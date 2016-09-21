@@ -1,31 +1,30 @@
-# Project Name - CAM.IO #
+# myLocal #
 
 ## HEADING ##
-  > Crowdsourcing Your Event Promotion.
+  > Volunteer, Gain Reputation and Improve your business.
 
 ## SUB-HEADING ##
-  > A event promotion power tool for organizers in driving sold-out ticket sales!
+  > An app to interact with all that is local to your place, whether it’s for money, for charity or just social
 
 ## SUMMARY ##
-  > An app for event organizers to harness the network of social influencers (i.e. on Facebook, Instagram, Twitter, WhatsApp, Weibo, etc) to amplify and incentivize promotion/marketing for your next upcoming event.
+  > myLocal ties together bussiness, individual sellers and members of the community bringing e-commerce closer to the user.  It will also provides a platform for the local community to iteract for charity work and social events. Users can gain     reputation by volunteering within the community that allow them to have a higher rating, resulting in increased sales.
 
 ## PROBLEM ##
-  > As event organizers you want to promote your event without having to seem like spamming potential attendees. In addition, typical marketing/advertising is not as cost effective in terms of actually getting attendess to purchase tickets and attend your event.
+  > The current market does not reward volunteer work enough. With growing internet usage, interaction within the community is dwindling on a personal level. Currently, there exists a lot of skilled labor that can be tapped by the neighbourhood. 
 
 
 ## SOLUTION ##
-  > This is where CAM.IO comes in. The app allows for event organizers to organically/socially promote their event by incentivizing social influencers (and also their attendees) to promote their event on their behalf with referral reward system.
+  > Connecting local community resources and justly rewarding contributing members of the community.
 
-  > Another side-solution/benefit to this app is that it allows event organizers to identify their most loyal and influential customers so that they can "re-hire" them for their next upcoming event.
 
 ## QUOTE FROM YOU ##
-  > "A simple solution to increasing ticket sales for you event! Big or small!"
+  > "An app to interact with all that is local to your place, whether it’s for money, for charity or just social"
 
 ## HOW TO GET STARTED ##
-  > It's super simple. Sign up for an event organizer account. Create your event and build/customize your reward program and start promoting away.
+  > Register with myLocal find or post work 
 
 ## CUSTOMER QUOTE ##
-  > "It takes the pain out of marketing and really reaches your audience in a very authentic way."
+  > "I volunteer so much now, demand for my contract work has doubled!"
 
 ## CLOSING AND CALL TO ACTION ##
-  > We're taking event marketing to a whole new level. Check us out on CAM.IO.
+  > 
