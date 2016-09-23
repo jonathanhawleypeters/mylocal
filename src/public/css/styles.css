@@ -1,0 +1,124 @@
+body {
+  background-color: #fafafa !important;
+}
+
+header {
+  background-color: white !important;
+  border-bottom: 1px solid #eee;
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+.navbar-brand, .nav-item {
+  color: #00a4d3 !important;
+}
+
+.main-bg {
+  height: 775px;
+  background-image: url('../img/main-bg.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding:300px 0;
+}
+
+.main-bg-text {
+  text-align: center;
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+.main-bg-text-hero,
+.main-bg-text-hero-blue {
+  font-size: 4.5rem !important;
+}
+
+.main-bg-text-hero-blue {
+  color:#00a4d3;
+  margin-top:20px
+}
+
+.inputBox {
+  padding:9px 10px 5px 10px;
+  border: 2px solid #c0c0c0;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.7rem;
+  vertical-align:top;
+  border-radius: 0;
+  outline: none;
+  color: #929292;
+  height:50px;
+}
+
+.typeSelect {
+  font-size: 1.7rem;
+  padding:4px 35px 13px 20px;
+  border: 2px solid #c0c0c0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background:url(https://10to8.com/wp-content/themes/W1A/images/down-arrow-grey.svg) 96% / 15% no-repeat;
+  color:#929292;
+  font-family:'Josefin Sans', sans-serif;
+  outline:none;
+  height:50px;
+}
+
+.divider {
+  margin-top: 50px;
+}
+
+.col-fluid {
+  padding: 0 !important;
+}
+
+.searchInfoMain {
+  position: relative;
+  text-align: center;
+  font-family: 'Julius Sans One', sans-serif;
+  color: #555;
+  padding-top:5%;
+}
+
+.btn-main-custom {
+  padding: 13px 70px !important;
+  outline: none !important;
+}
+
+.howItWorks {
+  background-image: url('../img/howto-banner.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: white;
+  font-family: 'Julius Sans One', sans-serif;
+  padding: 30px;
+}
+
+.howItWorks-Icon {
+  font-size: 4rem !important;
+  margin-top:20px;
+}
+
+.howItWorks-Icon-Next {
+  color:rgba(256, 256, 256, 0.9);
+  margin-top:30px
+}
+
+.container-fluid {
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+}
+
+.footer {
+  background-color: rgba(234, 234, 234, 0.6);
+  font-family: 'Julius Sans One', sans-serif;
+  padding:30px 20px;
+  color: #555;
+}
+
+.footer-links {
+  padding: 10px;
+  font-family: 'Julius Sans One', sans-serif;
+  display:table;
+  margin: 0 auto;
+}
