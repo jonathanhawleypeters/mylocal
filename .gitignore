@@ -7,5 +7,5 @@ src/public/bundle.js
 # Mac OS
 **/*.DS_Store
 
-
+.env
 
