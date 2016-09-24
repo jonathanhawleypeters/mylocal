@@ -1,22 +1,15 @@
-// require app, mongoose
-var app = require('./server/server.js');
-var mongoose = require('mongoose');
+//set up local environment
 require('dotenv').config();
-// set mongoURI
+var port = process.env.PORT;
 var mongoURI = process.env.DBPATH;
-// connect db
+
+// set up express
+var app = require('./server/server.js');
+
+// set up  and start db
+var mongoose = require('mongoose');
 mongoose.connect(mongoURI);
 
-// set port
-var port = process.env.PORT;
-// listen on port
+// start express server
 app.listen(port);
 console.log("Server is listening on port " + port);
-
-
-
-// var options = {
-//   user: 'legituser',
-//   pass: 'legitlegacy'
-// };
-// mongoose.connect('mongodb://54.173.68.94:27017/legit', options);

@@ -3,28 +3,28 @@ import React from 'react';
 export default class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-
-      this.state = {term: ''};
+    this.state = {term: ''};
   }
 
-    onInputChange(event) {
-      this.setState({term: event.target.value});
-    }
-    onFormSubmit(event) {
-      //tells browser not the submit form
-      event.preventDefault();
-    }
+  onInputChange(event) {
+    this.setState({term: event.target.value});
+  }
+
+  onFormSubmit(event) {
+    // Tells the browser not to refresh page
+    event.preventDefault();
+    console.log('Submitted Form');
+  }
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.onFormSubmit.bind(this)}>
         <input placeholder="Search" className="inputBox" required
-        onSubmit={this.onFormSubmit}
-        value={this.state.term}
-        onChange={(this.onInputChange).bind(this)}
+          value={this.state.term}
+          onChange={(this.onInputChange).bind(this)}
         />
-        <select className="typeSelect" required>
-          <option disabled defaultValue="- Type -"> </option>
+        <select className="typeSelect" defaultValue="" required>
+          <option disabled value="">- Type -</option>
           <option value="restaurant">Restaurants</option>
           <option value="events">Events</option>
           <option value="jobs">Jobs</option>
