@@ -3,6 +3,7 @@ node_modules
 
 # Built files
 src/public/bundle.js
+src/public/bundle.js.map
 
 # Mac OS
 **/*.DS_Store
