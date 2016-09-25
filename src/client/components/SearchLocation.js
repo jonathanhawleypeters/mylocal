@@ -23,15 +23,10 @@ export default class SearchLocation extends React.Component {
       <form onSubmit={this.onFormSubmit.bind(this)}>
         <Autocomplete
           className="inputBox"
-          //this is terrible
           style={{top: '-15px', left: '-5px', position: 'relative'}}
           value={this.state.term}
           onChange={(this.onInputChange).bind(this)}
-          onPlaceSelected={(place) => {
-            this.onInputChange(place);
-          }}
-          //the other type we want (later) 
-          //is 'establishment' for businesses
+          onPlaceSelected={(place) => this.onInputChange(place)}
           types={['address']}
           required
         />

@@ -3,19 +3,14 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    nodemon: {
-      dev: {
-        script: 'src/index.js'
-      }
-    },
-
     uglify: {
       options: {
         mangle: false
       },
       target: {
         files: {
-            'src/public/dist/client.min.js': 'src/public/lib/*.js'
+             //jquery and tether are dependencies of bootstrap// 
+            'src/public/dist/client.min.js': ['src/public/lib/jquery-3.1.1.js', 'src/public/lib/tether.js', 'src/public/lib/*.js']
         },
       }
     },
@@ -30,24 +25,32 @@ module.exports = function(grunt) {
 
     jshint: {
       files:{
-        src:  ['server/**/*.js', 'client/**/*.js', '*.js']
+        // check all js files within directories and subdirectories and its sub... of /src folder
+        src:  ['src/**/*.js']
       },
       options: {
         force: 'true',
         jshintrc: '.jshintrc',
         ignores: [
-          'src/**/*.js'
-        ]
+          'src/public/**/*.js'
+        ],
+        additionalSuffixes: ['.js']
       }
     },
- 
+
+    nodemon: {
+      dev: {
+        script: 'src/index.js'
+      }
+    },
+
     watch: {
       scripts: {
         files: [
-          'src/public/lib/*.js',
+          'src/client/**/*.js',
         ],
         tasks: [
-          'uglify'
+          'shell:webpack', 'uglify'
         ]
       },
       css: {
@@ -77,12 +80,22 @@ module.exports = function(grunt) {
           'npm install',
           'webpack',
           ].join('&&')
+      },
+      webpack: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: [
+          'webpack',
+          ].join('&&')
       }
     },
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-jsxhint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-shell');
@@ -97,12 +110,11 @@ module.exports = function(grunt) {
     });
     nodemon.stdout.pipe(process.stdout);
     nodemon.stderr.pipe(process.stderr);
-
     grunt.task.run([ 'watch' ]);
   });
 
   grunt.registerTask('build', [
-    'uglify', 'cssmin' //, 'jshint'
+    'uglify', 'cssmin', 'jshint'
   ]);
 
   grunt.registerTask('prod', function(n) {
