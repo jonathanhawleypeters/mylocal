@@ -2,23 +2,10 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    concat: {
-      js:{
-      }
-    },
-
-    mochaTest: {
-      test: {
-        options: {
-          reporter: 'spec'
-        },
-        src: ['test/**/*.js']
-      }
-    },
 
     nodemon: {
       dev: {
-        script: 'server.js'
+        script: 'src/index.js'
       }
     },
 
@@ -28,47 +15,46 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-            'public/dist/client.min.js': 'public/client/*.js'
+            'src/public/dist/client.min.js': 'src/public/lib/*.js'
         },
-      }
-    },
-
-    jshint: {
-      files:{
-        src:  ['app/**/*.js', 'models/**/*', 'lib/*.js', 'public/**/*.js', '*.js']
-      },
-      options: {
-        force: 'true',
-        jshintrc: '.jshintrc',
-        ignores: [
-          'public/lib/**/*.js',
-          'public/dist/**/*.js'
-        ]
       }
     },
 
     cssmin: {
       dist: {
         files: {
-          'public/dist/client.min.css': 'public/*.css'
+          'src/public/dist/client.min.css': 'src/public/css/*.css'
         }
       },
     },
+
+    jshint: {
+      files:{
+        src:  ['server/**/*.js', 'client/**/*.js', '*.js']
+      },
+      options: {
+        force: 'true',
+        jshintrc: '.jshintrc',
+        ignores: [
+          'src/**/*.js'
+        ]
+      }
+    },
+ 
     watch: {
       scripts: {
         files: [
-          'public/client/**/*.js',
+          'src/public/lib/*.js',
         ],
         tasks: [
           'uglify'
         ]
       },
       css: {
-        files: 'public/*.css',
+        files: 'src/public/css/*.css',
         tasks: ['cssmin']
       }
     },
-
 
     shell: {
       prodServer: {
@@ -76,12 +62,10 @@ module.exports = function(grunt) {
           stdout: true,
           stderr: true
         },
-
         command: [
-          'git add .',
-          'git status',
-          'git commit -m "Updated"',
-          'git --no-pager push heroku master',
+          'git --no-pager pull --rebase upstream master',
+          'npm install',
+          'webpack',
           ].join('&&')
       },
     },
@@ -90,13 +74,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
 
-  grunt.registerTask('server-dev', function (target) {
+  grunt.registerTask('server', function (target) {
     // Running nodejs in a different process and displaying output on the main console
     var nodemon = grunt.util.spawn({
          cmd: 'grunt',
@@ -109,31 +91,14 @@ module.exports = function(grunt) {
     grunt.task.run([ 'watch' ]);
   });
 
-  ////////////////////////////////////////////////////
-  // Main grunt tasks
-  ////////////////////////////////////////////////////
-
-  grunt.registerTask('test', [
-    'mochaTest'
-  ]);
-
   grunt.registerTask('build', [
     'uglify', 'cssmin' //, 'jshint'
   ]);
 
-  grunt.registerTask('upload', function(n) {
-    if(grunt.option('prod')) {
-
+  grunt.registerTask('prod', function(n) {
       grunt.task.run([ 'shell:prodServer' ]);
-      // add your production server task here
-    } else {
-      grunt.task.run([ 'server-dev' ]);
-    }
+      grunt.task.run([ 'build' ]);
+      grunt.task.run([ 'server' ]);
   });
-
-  grunt.registerTask('deploy', [
-    'build', 'upload'
-  ]);
-
 
 };
