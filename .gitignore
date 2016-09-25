@@ -1,13 +1,19 @@
 # Node modules
 node_modules
 
-# Built files
+# Built webpack file
 src/public/bundle.js
 src/public/bundle.js.map
+src/public/lib/bundle.js
+src/public/lib/bundle.js.map
+
+# Dist folder
+src/dist/
 
 # Mac OS
 **/*.DS_Store
 
 .env
 mylocal.pem
+
 
