@@ -8,6 +8,14 @@ header {
   font-family: 'Julius Sans One', sans-serif;
 }
 
+hr {
+  width: 60%;
+}
+
+form > div:first-of-type {
+  display: inline-block !important;
+}
+
 .navbar-brand, .nav-item {
   color: #00a4d3 !important;
 }
@@ -29,6 +37,11 @@ header {
 .main-bg-text-hero,
 .main-bg-text-hero-blue {
   font-size: 4.5rem !important;
+}
+
+.main-bg-text-search-blue {
+  color:#00a4d3;
+  font-size: 2rem !important;
 }
 
 .main-bg-text-hero-blue {
