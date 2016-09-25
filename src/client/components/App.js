@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar';
-import Hero from './Hero';
-import Location from './Location';
 import Categories from './Categories';
 import HowItWorks from './HowItWorks'; 
 import Footer from './Footer'; 
 
 export default class App extends Component {
   render() {
-    //Replaced Hero with Location for testing
     return (
       <div>
         <NavBar />
-        <Hero />
-        <Location />
+        {this.props.children}
         <Categories />
         <HowItWorks />
         <Footer />
