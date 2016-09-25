@@ -63,7 +63,7 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'git --no-pager pull --rebase upstream master',
+          'git pull --rebase upstream master',
           'npm install',
           'webpack',
           ].join('&&')
