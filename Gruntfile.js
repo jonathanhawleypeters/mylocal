@@ -68,6 +68,16 @@ module.exports = function(grunt) {
           'webpack',
           ].join('&&')
       },
+      localServer: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: [
+          'npm install',
+          'webpack',
+          ].join('&&')
+      }
     },
   });
 
@@ -97,6 +107,12 @@ module.exports = function(grunt) {
 
   grunt.registerTask('prod', function(n) {
       grunt.task.run([ 'shell:prodServer' ]);
+      grunt.task.run([ 'build' ]);
+      grunt.task.run([ 'server' ]);
+  });
+
+  grunt.registerTask('local', function(n) {
+      grunt.task.run([ 'shell:localServer' ]);
       grunt.task.run([ 'build' ]);
       grunt.task.run([ 'server' ]);
   });
