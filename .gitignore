@@ -8,7 +8,7 @@ src/public/lib/bundle.js
 src/public/lib/bundle.js.map
 
 # Dist folder
-src/dist/
+src/public/dist/
 
 # Mac OS
 **/*.DS_Store
