@@ -7,7 +7,7 @@ module.exports = {
     './src/client/index',
   ],
   output: {
-    filename: 'src/public/bundle.js'
+    filename: 'src/public/lib/bundle.js'
   },
   module: {
     loaders: [
