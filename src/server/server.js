@@ -1,9 +1,8 @@
 // start express app
-var express = require('express')
-  , app = express();
+var app = require('express')();
 
 // start express middleware
-require('./middleware')(app, express);
+require('./middleware')(app);
 
 // start express routes
 app.use(require('./controllers'));

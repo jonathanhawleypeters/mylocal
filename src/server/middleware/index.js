@@ -7,5 +7,5 @@ module.exports = function(app, express) {
   app.use(require('body-parser').urlencoded({extended: false}));
   
   // serve static files from public folder
-  app.use(express.static(__dirname + '/../../public'));
+  app.use(require('express').static(__dirname + '/../../public'));
 };
