@@ -47,16 +47,12 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: [
-          'src/client/**/*.js',
+          'src/client/**/*.js'
         ],
         tasks: [
-          'shell:webpack', 'uglify'
+          'shell:webpack'
         ]
       },
-      css: {
-        files: 'src/public/css/*.css',
-        tasks: ['cssmin']
-      }
     },
 
     shell: {
@@ -68,17 +64,17 @@ module.exports = function(grunt) {
         command: [
           'git --no-pager pull --rebase origin master',
           'npm install',
-          'webpack',
+          'cp src/public/index-prod.html src/public/index.html'
           ].join('&&')
       },
-      localServer: {
+      devServer: {
         options: {
           stdout: true,
           stderr: true
         },
         command: [
           'npm install',
-          'webpack',
+          'cp src/public/index-dev.html src/public/index.html'
           ].join('&&')
       },
       webpack: {
@@ -89,8 +85,17 @@ module.exports = function(grunt) {
         command: [
           'webpack',
           ].join('&&')
+      },
+      node: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: [
+          'node src/index.js',
+          ].join('&&')
       }
-    },
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -101,7 +106,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
 
-  grunt.registerTask('server', function (target) {
+  grunt.registerTask('devServer', function (target) {
     // Running nodejs in a different process and displaying output on the main console
     var nodemon = grunt.util.spawn({
          cmd: 'grunt',
@@ -113,20 +118,24 @@ module.exports = function(grunt) {
     grunt.task.run([ 'watch' ]);
   });
 
-  grunt.registerTask('build', [
-    'uglify', 'cssmin', 'jshint'
+  grunt.registerTask('buildProd', [
+    'jshint', 'shell:webpack', 'uglify', 'cssmin'
+  ]);
+
+  grunt.registerTask('buildDev', [
+    'jshint', 'shell:webpack'
   ]);
 
   grunt.registerTask('prod', function(n) {
       grunt.task.run([ 'shell:prodServer' ]);
-      grunt.task.run([ 'build' ]);
-      grunt.task.run([ 'server' ]);
+      grunt.task.run([ 'buildProd' ]);
+      grunt.task.run([ 'shell:node']);
   });
 
   grunt.registerTask('local', function(n) {
-      grunt.task.run([ 'shell:localServer' ]);
-      grunt.task.run([ 'build' ]);
-      grunt.task.run([ 'server' ]);
+      grunt.task.run([ 'shell:devServer' ]);
+      grunt.task.run([ 'buildDev' ]);
+      grunt.task.run([ 'devServer' ]);
   });
 
 };
