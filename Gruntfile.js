@@ -63,7 +63,7 @@ module.exports = function(grunt) {
         },
         command: [
           'sudo npm install',
-          'cp src/public/index-prod.html src/public/index.html'
+          'sudo cp src/public/index-prod.html src/public/index.html'
           ].join('&&')
       },
       devServer: {
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'webpack',
+          'sudo webpack',
           ].join('&&')
       },
       node: {
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'node src/index.js',
+          'sudo node src/index.js',
           ].join('&&')
       }
     }
@@ -118,7 +118,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('buildProd', [
-    'jshint', 'shell:webpack', 'uglify', 'cssmin'
+    'shell:webpack', 'uglify', 'cssmin'
   ]);
 
   grunt.registerTask('buildDev', [
