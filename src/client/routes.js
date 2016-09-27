@@ -2,11 +2,13 @@ import React from 'react';
 import App from './components/App';
 import Hero from './components/Hero';
 import Location from './components/Location';
-import { Route, IndexRoute } from 'react-router';
+import { Route, IndexRoute, browserHistory, Router } from 'react-router';
+import Signin from './components/Signin';
 
 export default (
-  <Route path="/" component={App}>
+  <Router path="/" component={App} >
     <IndexRoute component={Hero} />
+    <Route path="/signin" component={Signin}/>
     <Route path ="/search" component={Location} />
-  </Route>
+  </Router>
 );

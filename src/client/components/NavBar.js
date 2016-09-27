@@ -21,13 +21,13 @@ export default class NavBar extends Component {
               </ul>
               <ul className="nav navbar-nav pull-sm-right">
                 <li className="nav-item">
-                  <Link to ="/search" className="nav-item nav-link active">Home</Link>                    
+                  <Link to ="/search" className="nav-item nav-link active">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-item nav-link " href="#">Sign In</a>
+                  <Link to ="/signin" className="nav-item nav-link active">Sign in</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-item nav-link " href="#">Sign Up</a>
+                  <Link to ="/signup" className="nav-item nav-link active">Sign up</Link>
                 </li>
               </ul>
             </div>
