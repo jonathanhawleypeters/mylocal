@@ -62,8 +62,8 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'sudo npm install',
-          'sudo cp src/public/index-prod.html src/public/index.html'
+          'npm install',
+          'cp src/public/index-prod.html src/public/index.html'
           ].join('&&')
       },
       devServer: {
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'sudo webpack',
+          'webpack',
           ].join('&&')
       },
       node: {
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'sudo node src/index.js',
+          'node src/index.js',
           ].join('&&')
       }
     }
