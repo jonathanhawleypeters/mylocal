@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER } from '../constants/types';
+import { AUTH_USER, AUTH_ERROR } from '../constants/types';
 
 const ROOT_URL = 'http://localhost:3000';
 
@@ -22,8 +22,17 @@ export function signinUser({ email, password }) {
       dispatch({ type: AUTH_USER});
       // send user to / and update the history stack
       browserHistory.push('/');
+      localStorage.setItem('token', response.data.token);
     })
     .catch(() => {
+      dispatch(authError('Wrong login'));
     });
   };
+}
+
+export function authError(error){
+  return {
+    type: AUTH_ERROR,
+    payload: error
+  }
 }
