@@ -62,7 +62,7 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'npm install',
+          'sudo npm install',
           'cp src/public/index-prod.html src/public/index.html'
           ].join('&&')
       },
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'sudo npm install',
+          'npm install',
           'cp src/public/index-dev.html src/public/index.html'
           ].join('&&')
       },
