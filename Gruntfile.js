@@ -62,7 +62,6 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'git --no-pager pull --rebase origin master',
           'npm install',
           'cp src/public/index-prod.html src/public/index.html'
           ].join('&&')
