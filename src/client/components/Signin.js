@@ -36,7 +36,7 @@ class Signin extends Component {
                 </fieldset>
                 <fieldset className="form-group">
                   <label>Password:</label>
-                    <input {...password} className="form-control" className="inputBox" />
+                    <input {...password} type="password" className="form-control" className="inputBox" />
                 </fieldset>
                 {this.renderAlert()}
               <button action="submit" className="btn btn-primary">Sign in</button>
