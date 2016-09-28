@@ -8,6 +8,16 @@ class Signup extends Component {
     this.props.signupUser(formProps);
   }
 
+  renderAlert(){
+    if (this.props.errorMessage){
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops!</strong> {this.props.errorMessage}
+        </div>
+      );
+    }
+  }
+
   render() {
     const { handleSubmit, fields: {firstName, lastName, email, password, address} } = this.props;
 
@@ -39,6 +49,7 @@ class Signup extends Component {
                   <label>Address:</label>
                     <input {...address} className="form-control" className="inputBox" />
                 </fieldset>
+                {this.renderAlert()}
               <button action="submit" className="btn btn-primary">Sign up</button>
               </form>
           <div className="divider"></div>
@@ -52,10 +63,14 @@ function validate(formProps){
   const errors = {};
 }
 
+function mapStateToProps(state){
+  return { errorMessage: state.auth.error };
+}
+
 export default reduxForm({
   form: 'signup',
   fields: ['firstName', 'lastName', 'email', 'password', 'address'],
   validate
-}, null, actions)(Signup);
+}, mapStateToProps, actions)(Signup);
 
 
