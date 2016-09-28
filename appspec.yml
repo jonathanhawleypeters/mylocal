@@ -3,3 +3,8 @@ os: linux
 files:
   - source: /
     destination: /home/ubuntu/mylocal
+permissions:
+  - object: /myapp/startApp.sh
+    mode: 777
+  - object: /myapp/stopApp.sh
+    mode: 777
