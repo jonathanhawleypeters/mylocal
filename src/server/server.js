@@ -5,6 +5,6 @@ var app = require('express')();
 require('./middleware')(app);
 
 // start express routes
-app.use(require('./controllers'));
+app.use(require('./routes'));
 
 module.exports = app;
