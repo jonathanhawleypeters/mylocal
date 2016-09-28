@@ -9,7 +9,7 @@ export default class Footer extends Component {
             <div className="col-lg-4 col-md-6">
               <h1>About Us</h1>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia hello</p>
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia</p>
             </div>
           </div>
         </div>
