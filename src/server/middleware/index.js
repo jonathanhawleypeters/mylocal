@@ -8,6 +8,7 @@ module.exports = function(app, express) {
   // body parser for post requests
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
+  
   // serve static files from public folder
   app.use(require('express').static(__dirname + '/../../public'));
 };
