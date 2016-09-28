@@ -91,7 +91,7 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'node src/index.js',
+          'forever start src/index.js',
           ].join('&&')
       }
     }
