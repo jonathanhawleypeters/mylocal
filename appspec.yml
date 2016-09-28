@@ -10,8 +10,8 @@ permissions:
     mode: 777
 hooks:
   ApplicationStop:
-    - location: /home/ubuntu/mylocal/stopApp.sh
+    - location: stopApp.sh
       timeout: 180
   ApplicationStart:
-    - location: /home/ubuntu/mylocal/startApp.sh
+    - location: startApp.sh
       timeout: 180
