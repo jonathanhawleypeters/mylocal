@@ -18,3 +18,5 @@ export default (
     <Route path="/signup" component={Signup} />
   </Router>
 );
+
+// todo: add protected routes by using RequireAuth
