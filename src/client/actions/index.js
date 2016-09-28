@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER, AUTH_ERROR } from '../constants/types';
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from '../constants/types';
 
 const ROOT_URL = 'http://localhost:3000';
 
@@ -8,12 +8,10 @@ const ROOT_URL = 'http://localhost:3000';
 // action creator > action > Dispatch > sent to all reducers
 // we are using redux thunk, because it gives you access to Dispatch
 // we are not using redux promise
-
 // if success, update state of app to authenticated
 // save jwt token
 // redirect
 // async function
-
 export function signinUser({ email, password }) {
   return function(dispatch) {
     axios.post(`${ROOT_URL}/signin`, {email, password})
@@ -30,9 +28,28 @@ export function signinUser({ email, password }) {
   };
 }
 
-export function authError(error){
+export function authError(error) {
   return {
     type: AUTH_ERROR,
     payload: error
-  }
+  };
 }
+
+export function signoutUser() {
+  localStorage.removeItem('token');
+  return { type: UNAUTH_USER };
+}
+
+export function signupUser({ email, password, firstName, lastName, address }) {
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/signup`, {email, password, firstName, lastName, address})
+    .then(response =>{
+      dispatch({ type: AUTH_USER});
+      localStorage.setItem('token', response.data.token);
+      browserHistory.push('/');
+    })
+    .catch(response => dispatch(authError(response.data.error)));
+  };
+}
+
+

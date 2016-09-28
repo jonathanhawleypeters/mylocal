@@ -16,6 +16,10 @@ exports.signup = function(req, res, next) {
 
   var email = req.body.email;
   var password = req.body.password;
+  var firstName = req.body.firstName;
+  var lastName = req.body.lastName;
+  var address = req.body.address;
+
   if (!email || !password) {
     return res.status(422).send({ error: 'You must submit email and password'});
   }
@@ -26,7 +30,10 @@ exports.signup = function(req, res, next) {
     }
     var user = new User({
       email: email,
-      password: password
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      address: address
     });
     user.save(function(err) {
       if (err) { return next(err); }
