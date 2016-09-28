@@ -9,9 +9,6 @@ permissions:
   - object: /home/ubuntu/mylocal/stopApp.sh
     mode: 777
 hooks:
-  ApplicationStop:
-    - location: stopApp.sh
-      timeout: 180
   ApplicationStart:
     - location: startApp.sh
       timeout: 180
