@@ -13,7 +13,6 @@ export default class App extends Component {
         <NavBar />
         {this.props.children}
         <EventbriteSearchBar />
-        <EventbriteList />
         <Categories />
         <HowItWorks />
         <Footer />

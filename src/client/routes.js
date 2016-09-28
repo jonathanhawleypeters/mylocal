@@ -8,6 +8,7 @@ import Signin from './components/Signin';
 import Signout from './components/Signout';
 import Signup from './components/Signup';
 import RequireAuth from './components/require_auth';
+import EventbriteList from './containers/EventbriteList';
 
 export default (
   <Router path="/" component={App} >
@@ -16,6 +17,7 @@ export default (
     <Route path="/search" component={Location} />
     <Route path="/signout" component={Signout} />
     <Route path="/signup" component={Signup} />
+    <Route path="/eventSearch" component={EventbriteList} />
   </Router>
 );
 
