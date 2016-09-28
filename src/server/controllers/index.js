@@ -1,30 +1,42 @@
-var Auth = require('../auth/authentication');
-var passportService = require('../auth/passport');
-var passport = require('passport');
+var User = require('../db/models/user');
+const jwt = require('jwt-simple');
+const secret = process.env.SECRET;
 
-// setting passport middleware helper - can be used to secure any route
-var requireAuth = passport.authenticate('jwt', { session: false} );
-// passpor middleware for signin
-const requireSignin = passport.authenticate('local', {session: false });
+// helper function to encode the token given the user obj 
+function tokenForUser(user) {
+  const timestamp = new Date().getTime();
+  return jwt.encode({ sub: user.id, iat: timestamp }, secret);
+}
 
-//start the express router
-var router = require('express').Router();
+// Returns a token, if it gets here then already authenticated by passport middleware
+exports.signin = function(req, res) {
+  res.send({ token: tokenForUser(req.user) });
+};
 
-//define the routes
-router.get('/test', function(req, res) {
-  res.send( 'Hello World' );
-});
-
-// has protected route
-router.get('/secured', requireAuth, function(req, res) {
-  res.send({ success: true });
-});
-
-// signin route
-router.post('/signin', requireSignin, Auth.signin);
-
-// signup route
-router.post('/signup', Auth.signup);
-
-//
-module.exports = router;
+exports.signup = function(req, res) {
+  var email = req.body.email;
+  var password = req.body.password;
+  var firstName = req.body.firstName;
+  var lastName = req.body.lastName;
+  var address = req.body.address;
+  if (!email || !password) {
+    return res.status(422).send({ error: 'You must submit email and password'});
+  }
+  User.findOne({ email: email }, function(err, existingUser) {
+    if (err) return next(err);
+    if (existingUser) {
+      return res.status(422).send({error: 'Email is in use'});
+    }
+    var user = new User({
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      address: address
+    });
+    user.save(function(err) {
+      if (err) return next(err);
+      res.json({ token: tokenForUser(user)});
+    });
+  });
+};
