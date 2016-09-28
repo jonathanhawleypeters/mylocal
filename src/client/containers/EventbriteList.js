@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class EventbriteList extends Component {
+class EventbriteList extends Component {
+  
+  // renderEventbrite(eventData) {
+  //   return (
+  //     <tr>
+  //       <td>{eventData.description.text}</td>
+  //     </tr>
+  //   );
+  // }
   render() {
     return (
       <table className="table table-hover">
@@ -10,8 +19,22 @@ export default class EventbriteList extends Component {
           </tr>
         </thead>
         <tbody>
+          {this.props.Eventbrite.map(function (eventData) {
+            return (
+              <tr id="eventData.id">
+                <td>{eventData.description.text}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     )
   }
+
 }
+
+function mapStateToProps({ Eventbrite }) {
+  return { Eventbrite }
+}
+
+export default connect(mapStateToProps)(EventbriteList)
