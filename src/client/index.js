@@ -7,7 +7,6 @@ import routes from './routes';
 import reducers from './reducers';
 import reduxThunk from 'redux-thunk';
 
-
 // apply any middleware
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
