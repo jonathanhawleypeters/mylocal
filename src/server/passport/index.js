@@ -1,5 +1,5 @@
 const passport = require('passport');
-const User = require('../db/models/user');
+const User = require('../db/user');
 const secret = process.env.SECRET;
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;

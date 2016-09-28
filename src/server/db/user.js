@@ -30,8 +30,8 @@ userSchema.pre('save', function(next) {
 });
 
 // schema methods
-userSchema.methods.comparePassword = function(submittedPassword, callback){
-  bcrypt.compare(submittedPassword, this.password, function(err, isMatch){
+userSchema.methods.comparePassword = function(submittedPassword, callback) {
+  bcrypt.compare(submittedPassword, this.password, function(err, isMatch) {
     if (err) return callback(err);
     callback(null, isMatch);
   });
