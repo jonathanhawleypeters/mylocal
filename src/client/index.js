@@ -17,3 +17,5 @@ ReactDOM.render(
   </Provider>
     , document.getElementById('app')
   );
+
+// todo : automatically authenticate users
