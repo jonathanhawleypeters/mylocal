@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = "NC2JZXIIIFTJNADNE6X6";
+const API_KEY = "4JELE3WKM2XRYPGWNE7Q";
 const ROOT_URL = `https://www.eventbriteapi.com/v3/events/search/?token=${API_KEY}`;
 
 export const Search_Eventbrite = 'Search_Eventbrite';
