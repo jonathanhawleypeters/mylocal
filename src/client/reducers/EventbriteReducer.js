@@ -1,9 +1,13 @@
-import { Search_Eventbrite } from '../actions/EventbriteSearchAction'
+import { SEARCH_EVENTBRITE } from '../actions/EventbriteSearchAction'
 
 export default function(state = [], action) {
+
   switch(action.type) {
-    case Search_Eventbrite:
-      return [ action.payload.data ];
+
+    case SEARCH_EVENTBRITE:
+    console.log('im in reducer', action);
+      return [ action.payload ];
   }
+
   return state;
 }
