@@ -122,7 +122,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('buildDev', [
-    'jshint', 'shell:webpack'
+    'shell:webpack'
   ]);
 
   grunt.registerTask('prod', function(n) {
