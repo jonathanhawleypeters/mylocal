@@ -7,6 +7,7 @@ import Location from './components/Location';
 import Signin from './components/Signin';
 import Signout from './components/Signout';
 import Signup from './components/Signup';
+import RequireAuth from './components/require_auth';
 
 export default (
   <Router path="/" component={App} >
