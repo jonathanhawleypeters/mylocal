@@ -1,4 +1,4 @@
-import { AUTH_USER, UNAUTH_USER, AUTH_ERRORR } from '../constants/types'
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from '../constants/types'
 
 export default function(state = {}, action) {
     // update existing state
