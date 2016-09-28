@@ -4,7 +4,7 @@ import authReducer from './auth_reducer';
 
 const rootReducer = combineReducers({
 
-  form, // can just write as form - ES6
+  form: form, // can just write as form - ES6
   auth: authReducer
 });
 
