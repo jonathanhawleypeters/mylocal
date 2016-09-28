@@ -1,4 +1,4 @@
-var User = require('../db/models/user');
+var User = require('../db/user');
 const jwt = require('jwt-simple');
 const secret = process.env.SECRET;
 
