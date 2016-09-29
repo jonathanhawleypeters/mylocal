@@ -3,28 +3,41 @@ import Autocomplete from 'react-google-autocomplete';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { searchYelp } from '../actions/SearchYelp';
+import { searchEventbrite } from '../actions/EventbriteSearchAction';
 
 class SearchLocation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       location: '',
+      zip: '',
       results: []
     };
   }
 
   onInputChange(event) {
-    this.setState({ location: event.formatted_address });
+    console.log('im in onInputChange', event.address_components);
+    this.setState({
+      location: event.formatted_address,
+      zip: event.address_components[7].short_name
+    });
   }
 
   onFormSubmit(event) {
     // Tells the browser not to refresh page
     event.preventDefault();
-    this.props.searchYelp(this.state.location);
+    if (this.props.terms.type === 'restaurant'){
+    this.props.searchYelp(this.state.location, this.props.terms.query);
+
+    } else if(this.props.terms.type === 'events'){
+      this.props.searchEventbrite(this.props.terms.query, this.state.zip);
+    }
+
   }
 
   render() {
     console.log('checking props in Search Location', this.props.terms)
+
     return (
       <form onSubmit={ this.onFormSubmit.bind(this) }>
         <Autocomplete
@@ -53,4 +66,4 @@ var mapStateToProps = function (state) {
   }
 }
 
-export default connect (mapStateToProps, { searchYelp })(SearchLocation);
+export default connect (mapStateToProps, { searchYelp, searchEventbrite })(SearchLocation);

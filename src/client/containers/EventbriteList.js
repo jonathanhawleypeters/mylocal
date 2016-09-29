@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class EventbriteList extends Component {
-  
+
   // renderEventbrite(eventData) {
   //   return (
   //     <tr>
@@ -35,8 +35,8 @@ class EventbriteList extends Component {
               <div className="col-md-9">
                 <h3 style={{marginTop: 20 + "px"}}>{eventData.name.text}</h3>
                 <div style={{marginTop: 5 + "px"}}></div>
-                <i className="material-icons locationPointer">location_on</i>
-                Location of the restaurant
+
+
                 <hr />
                 <h4>Description</h4>
                 <p className="desc">{eventData.description.text}</p>
