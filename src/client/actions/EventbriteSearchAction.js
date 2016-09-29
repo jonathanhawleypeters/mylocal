@@ -14,7 +14,7 @@ export function searchEventbrite (query/*, location*/) {
       payload: []
     });
     browserHistory.push('/eventSearch');
-    const url = `${ROOT_URL}&q=${query}`;
+    const url = `${ROOT_URL}&q=${query}&location.address=95817`;
     const request = axios.get(url)
     .then(response =>{
       console.log('im in action', response);
