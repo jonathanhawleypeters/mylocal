@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchLocation from './SearchLocation';
+import SearchLocation from '../containers/SearchLocation';
 
 export default class Location extends React.Component {
 

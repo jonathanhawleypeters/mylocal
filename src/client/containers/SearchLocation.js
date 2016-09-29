@@ -1,7 +1,10 @@
 import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
+import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { searchYelp } from '../actions/SearchYelp';
 
-export default class SearchLocation extends React.Component {
+class SearchLocation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,10 +20,7 @@ export default class SearchLocation extends React.Component {
   onFormSubmit(event) {
     // Tells the browser not to refresh page
     event.preventDefault();
-    $.get(`/search/restaurants?location=${ this.state.location }&term=restaurant`)
-    .done(function(response) {
-      this.setState({ 'results':response.businesses });
-    }.bind(this));
+    this.props.searchYelp(this.state.location);
   }
 
   render() {
@@ -45,3 +45,5 @@ export default class SearchLocation extends React.Component {
     );
   }
 }
+
+export default connect(null, { searchYelp })(SearchLocation);
