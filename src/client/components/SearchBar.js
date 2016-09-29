@@ -1,19 +1,31 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
+import { submitQueryAndType } from '../actions/searchActions'
+import { connect } from 'react-redux'
 
-export default class SearchBar extends React.Component {
+class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {term: ''};
+    this.state = {
+      term: '',
+      type: ''
+    };
   }
 
   onInputChange(event) {
     this.setState({term: event.target.value});
   }
 
+  onTypeChange(event) {
+    this.setState({type: event.target.value});
+  }
+
   onFormSubmit(event) {
     // Tells the browser not to refresh page
     event.preventDefault();
-    console.log('Submitted Form');
+    console.log('message', this.state.term, this.state.type);
+    submitQueryAndType(this.state.term, this.state.type);
+    browserHistory.push('/search');
   }
 
   render() {
@@ -23,7 +35,7 @@ export default class SearchBar extends React.Component {
           value={this.state.term}
           onChange={(this.onInputChange).bind(this)}
         />
-        <select className="typeSelect" defaultValue="" required>
+        <select className="typeSelect" defaultValue="" onChange={(this.onTypeChange).bind(this)} required>
           <option disabled value="">- Type -</option>
           <option value="restaurant">Restaurants</option>
           <option value="events">Events</option>
@@ -34,3 +46,5 @@ export default class SearchBar extends React.Component {
     );
   }
 }
+
+export default connect (null, submitQueryAndType)(SearchBar);
