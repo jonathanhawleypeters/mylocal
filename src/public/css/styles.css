@@ -46,7 +46,6 @@ header {
   outline: none;
   color: #929292;
   height:50px;
-  margin-right: 10px;
 }
 
 .typeSelect {
@@ -201,4 +200,12 @@ div.pac-container.pac-logo::after {
 }
 .desc {
   font-family: 'Josefin Sans', sans-serif;
+}
+
+
+.main-banner {
+  background-image: url(../img/Signup.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
