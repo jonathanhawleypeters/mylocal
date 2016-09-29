@@ -18,9 +18,17 @@ router.post('/signup', handler.signup);
 // signin route
 router.post('/signin', requireSignin, handler.signin);
 
+// call from client for yelp search
+router.get('/search/restaurants', handler.searchYelp);
+
 // example: protected route
 router.get('/secured', requireAuth, function(req, res) {
   res.send({ success: true });
 });
+
+// // No matching route - send index.html
+// router.get('*', function (req, res) {
+//   res.sendFile(require('path').join(__dirname, '/../../public/index.html'));
+// });
 
 module.exports = router;

@@ -4,41 +4,43 @@ import Autocomplete from 'react-google-autocomplete';
 export default class SearchLocation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {location: ''};
+    this.state = {
+      location: '',
+      results: []
+    };
   }
 
   onInputChange(event) {
-    console.log(event);
-    this.setState({location: event});
+    this.setState({ location: event.formatted_address });
   }
 
   onFormSubmit(event) {
     // Tells the browser not to refresh page
     event.preventDefault();
-    console.log('Submitted Form');
+    $.get(`/search/restaurants?location=${ this.state.location }&term=restaurant`)
+    .done(function(response) {
+      this.setState({ 'results':response.businesses });
+    }.bind(this));
   }
 
   render() {
     return (
-      <form onSubmit={this.onFormSubmit.bind(this)}>
+      <form onSubmit={ this.onFormSubmit.bind(this) }>
         <Autocomplete
           className="inputBox"
-          style={{top: '-15px', left: '-5px', position: 'relative'}}
-          value={this.state.term}
-          onChange={(this.onInputChange).bind(this)}
-          onPlaceSelected={(place) => this.onInputChange(place)}
-          types={['address']}
+          style={{ 'width': '30%', 'textAlign': 'center' }}
+          value={ this.state.location }
+          onChange={ (this.onInputChange).bind(this) }
+          onPlaceSelected={ (place) => this.onInputChange(place) }
+          types={ ['address'] }
           required
         />
-        <select className="typeSelect" defaultValue="" required>
-          <option disabled value="">- Type -</option>
-          <option value="restaurant">Restaurants</option>
-          <option value="events">Events</option>
-          <option value="jobs">Jobs</option>
-          <option value="volunteers">Volunteers</option>
-        </select>
-        <div className="divider"></div>
-        <button className="btn btn-lg btn-primary">Submit</button>
+        <div style={{ 'marginTop':'10px' }}></div>
+        <button className="btn btn-outline-info btn-lg btn-main-custom">Submit</button>
+        { !this.state.results.length ? '' : this.state.results.map((restaurant) => {
+            return (<div>{restaurant.name}</div>)
+          })
+        }
       </form>
     );
   }

@@ -7,8 +7,8 @@ export default class Location extends React.Component {
     return (
       <div className="main-bg">
         <div className="main-bg-text">
-          <h1 className="main-bg-text-search-blue">Where do you want to find restaurants?</h1>
-          <hr />
+          <h1 className="main-text">Where do you want to find restaurants?</h1>
+          <hr className="hr" />
           <div className="divider"></div>
           <SearchLocation />
           <div className="divider"></div>

@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar';
-import Categories from './Categories';
-import HowItWorks from './HowItWorks'; 
+import NavBar from './NavBar'; 
 import Footer from './Footer'; 
-import EventbriteSearchBar from '../containers/EventbriteSearchBar';
-import EventbriteList from '../containers/EventbriteList';
 
 export default class App extends Component {
   render() {
@@ -12,9 +8,12 @@ export default class App extends Component {
       <div>
         <NavBar />
         {this.props.children}
+<<<<<<< 7d614feef5a0a643094e3dd22f623c1478beabb2
         <EventbriteSearchBar />
         <Categories />
         <HowItWorks />
+=======
+>>>>>>> restructured react router
         <Footer />
       </div>
     );
