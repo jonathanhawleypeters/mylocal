@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from '../actions';
+import { browerHistory, Link } from 'react-router'
+
 
 class Signin extends Component {
 
@@ -31,15 +33,15 @@ class Signin extends Component {
             <hr />
             <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} >
                 <fieldset className="form-group">
-                  <label>Email:</label>
-                  <input {...email} className="form-control" className="inputBox" />
+
+                  <input {...email} className="form-control inputBox" style={{display:'block', width:'90 %', border: '1 px solid #ddd', outline:'none', padding:'7px', margin:'0 auto' }} placeholder="Email..." />
                 </fieldset>
                 <fieldset className="form-group">
-                  <label>Password:</label>
-                    <input {...password} type="password" className="form-control" className="inputBox" />
+                    <input {...password} type="password" className="form-control inputBox" style={{display:'block', width:'90 %', border: '1 px solid #ddd', outline:'none', padding:'7px', margin:'0 auto' }} placeholder="Password..." />
                 </fieldset>
                 {this.renderAlert()}
-              <button action="submit" className="btn btn-primary">Sign in</button>
+              <button action="submit" className="btn btn-primary" style={{marginTop:'5px', width:'100%', border:'none', outline:'none', padding:'16px', backgroundColor:'lightgreen', color:'white', fontSize:'20px'}}>Sign in</button>
+              <div style={{ marginTop: 15+'px'}}><Link to="/signup">Don't have an account? <strong>Signup</strong>...</Link></div>
               </form>
           </div>
         </div>
