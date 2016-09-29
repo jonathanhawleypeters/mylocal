@@ -25,11 +25,11 @@ class Signin extends Component {
     return (
         // note latest redux form gives warning message on spread operator, but still works
         // rolled back to redux 5.33, since 6.05 uses a different format.
-        <div className="main-bg">
-          <div className="main-bg-text">
-            <h2 className="main-bg-text-hero">We Find, You Choose</h2>
-            <h4 className="main-bg-text-hero-blue">Please Login</h4>
-              <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} >
+        <div style={{textAlign:"center", marginTop: 200+"px"}}>
+          <div className="col-md-4 offset-md-4 col-sm-8 offset-sm-2">
+            <h3 style={{marginTop:15+"px", fontFamily:"Julius Sans One"}}>Sign In</h3>
+            <hr />
+            <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} >
                 <fieldset className="form-group">
                   <label>Email:</label>
                   <input {...email} className="form-control" className="inputBox" />
@@ -41,7 +41,6 @@ class Signin extends Component {
                 {this.renderAlert()}
               <button action="submit" className="btn btn-primary">Sign in</button>
               </form>
-          <div className="divider"></div>
           </div>
         </div>
     );
