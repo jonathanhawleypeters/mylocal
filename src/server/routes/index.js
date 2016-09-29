@@ -26,9 +26,9 @@ router.get('/secured', requireAuth, function(req, res) {
   res.send({ success: true });
 });
 
-// // No matching route - send index.html
-// router.get('*', function (req, res) {
-//   res.sendFile(require('path').join(__dirname, '/../../public/index.html'));
-// });
+//catchall
+router.get('/*', function (req, res) {
+  res.sendFile('index.html', { root: __dirname + '/../../public/' });
+});
 
 module.exports = router;
