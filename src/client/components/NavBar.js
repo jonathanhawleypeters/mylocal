@@ -37,12 +37,12 @@ import { connect } from 'react-redux';
             <div className="collapse navbar-toggleable-xs" id="bd-main-nav">
               <ul className="nav navbar-nav">
                 <li className="nav-item hidden-xs-down">
-                  <a className="navbar-brand" href="#"><img src="img/logo.svg" style={{ 'width': '80px' }}/></a>
+                  <Link className="navbar-brand" to="/"><img src="img/logo.svg" style={{ 'width': '80px' }}/></Link>
                 </li>
               </ul>
               <ul className="nav navbar-nav pull-sm-right" style={{ 'margin-top': '13px'}}>
                 <li className="nav-item">
-                  <Link className="nav-item nav-link active" to="/search">Home</Link>
+                  <Link className="nav-item nav-link active" to="/">Home</Link>
                 </li>
                 {this.isAuthenticated()}
               </ul>
