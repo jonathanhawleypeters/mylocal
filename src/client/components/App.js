@@ -8,12 +8,6 @@ export default class App extends Component {
       <div>
         <NavBar />
         {this.props.children}
-<<<<<<< 7d614feef5a0a643094e3dd22f623c1478beabb2
-        <EventbriteSearchBar />
-        <Categories />
-        <HowItWorks />
-=======
->>>>>>> restructured react router
         <Footer />
       </div>
     );
