@@ -6,15 +6,15 @@ const ROOT_URL = `https://www.eventbriteapi.com/v3/events/search/?token=${API_KE
 
 export const SEARCH_EVENTBRITE = 'Search_Eventbrite';
 
-export function searchEventbrite (query/*, location*/) {
+export function searchEventbrite (query, location) {
   return function(dispatch) {
-
+console.log('im in eventbrite action!!!', location);
     dispatch({
       type: SEARCH_EVENTBRITE,
       payload: []
     });
-    browserHistory.push('/eventSearch');
-    const url = `${ROOT_URL}&q=${query}&location.address=95817`;
+    browserHistory.push('/search/events');
+    const url = `${ROOT_URL}&q=${query}&location.address=${location}`;
     const request = axios.get(url)
     .then(response =>{
       console.log('im in action', response);
