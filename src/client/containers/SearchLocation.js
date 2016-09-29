@@ -24,6 +24,7 @@ class SearchLocation extends React.Component {
   }
 
   render() {
+    console.log('checking props in Search Location', this.props.terms)
     return (
       <form onSubmit={ this.onFormSubmit.bind(this) }>
         <Autocomplete
@@ -46,4 +47,10 @@ class SearchLocation extends React.Component {
   }
 }
 
-export default connect(null, { searchYelp })(SearchLocation);
+var mapStateToProps = function (state) {
+  return {
+    terms: state.SearchTerms
+  }
+}
+
+export default connect (mapStateToProps, { searchYelp })(SearchLocation);
