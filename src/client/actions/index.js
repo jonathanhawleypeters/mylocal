@@ -2,7 +2,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from '../constants/types';
 
-const ROOT_URL = 'http://localhost:3000';
+
 
 // action submits email, pw to the server
 // action creator > action > Dispatch > sent to all reducers
@@ -14,7 +14,7 @@ const ROOT_URL = 'http://localhost:3000';
 // async function
 export function signinUser({ email, password }) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/signin`, {email, password})
+    axios.post('/signin', {email, password})
     .then(response =>{
       //update state - dispatch action by redux-thunk
       dispatch({ type: AUTH_USER});
@@ -42,7 +42,7 @@ export function signoutUser() {
 
 export function signupUser({ email, password, firstName, lastName, address }) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/signup`, {email, password, firstName, lastName, address})
+    axios.post('/signup', {email, password, firstName, lastName, address})
     .then(response =>{
       dispatch({ type: AUTH_USER});
       localStorage.setItem('token', response.data.token);
