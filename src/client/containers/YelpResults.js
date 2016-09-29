@@ -15,7 +15,7 @@ class YelpResults extends Component {
             <div className="result" key={ restaurant.id }>
               <div className="row">
                 <div className="col-md-3">
-                  <img src={ restaurant.image_url } alt="" className="result-img img-fluid" style={{ 'width': '100%' }} />
+                  <img src={ !!restaurant.image_url ? restaurant.image_url : "http://resources.ennect.com/_images/application/event/no-selected-image-placeholder-large.gif" } alt="" className="result-img img-fluid" style={{ 'width': '100%' }} />
                   <button style={{ 'width': '100%' }} className="btn btn-info btn-main-custom">More Info</button>
                   <button style={{ 'width': '100%' }} className="btn btn-outline-info btn-main-custom">Reviews</button>
                 </div>
