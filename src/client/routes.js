@@ -4,9 +4,9 @@ import App from './components/App';
 import Home from './components/Home';
 import Location from './components/Location';
 import YelpResults from './containers/YelpResults';
-import Signin from './components/Signin';
-import Signout from './components/Signout';
-import Signup from './components/Signup';
+import Signin from './containers/Signin';
+import Signout from './containers/Signout';
+import Signup from './containers/Signup';
 import RequireAuth from './components/require_auth';
 import EventbriteList from './containers/EventbriteList';
 
