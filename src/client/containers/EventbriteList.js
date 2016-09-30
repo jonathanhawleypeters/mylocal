@@ -18,7 +18,7 @@ class EventbriteList extends Component {
       {this.props.Eventbrite.length === 0 ? "Searching for Events" : "Search Results for Restaurants" }</h2>
       <input placeholder="Filter" className="inputBox filter" />
       <div className="clearfloat"></div>
-      {this.props.Eventbrite.length === 0 ? <img src="https://i.imgur.com/EATfJf4.gif" /> : <div></div> }
+      {this.props.Eventbrite.length === 0 ? <img className="loading" src="https://i.imgur.com/EATfJf4.gif" /> : <div></div> }
       <hr />
 
       {this.props.Eventbrite.map(function (eventData) {

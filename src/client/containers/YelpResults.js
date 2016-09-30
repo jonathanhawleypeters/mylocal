@@ -8,7 +8,7 @@ class YelpResults extends Component {
         <h2 className="searchresults-main">Search Results for Restaurants</h2>
         <input placeholder="Filter" className="inputBox filter" />
         <div className="clearfloat"></div>
-        {this.props.YelpResults.length === 0 ? <img src="https://i.imgur.com/EATfJf4.gif" /> : '' }
+        {this.props.YelpResults.length === 0 ? <img className="loading" src="https://i.imgur.com/EATfJf4.gif" /> : '' }
         <hr />
         { this.props.YelpResults.map(function (restaurant) {
           return (
