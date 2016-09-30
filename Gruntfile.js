@@ -62,7 +62,6 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'npm install',
           'cp src/public/index-prod.html src/public/index.html'
           ].join('&&')
       },
@@ -128,7 +127,6 @@ module.exports = function(grunt) {
   grunt.registerTask('prod', function(n) {
       grunt.task.run([ 'shell:prodServer' ]);
       grunt.task.run([ 'buildProd' ]);
-      grunt.task.run([ 'shell:node']);
   });
 
   grunt.registerTask('local', function(n) {
@@ -136,5 +134,4 @@ module.exports = function(grunt) {
       grunt.task.run([ 'buildDev' ]);
       grunt.task.run([ 'devServer' ]);
   });
-  
 };
