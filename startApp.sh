@@ -1,2 +1,2 @@
 cd /home/ubuntu/mylocal
-sudo grunt prod
+sudo forever start src/index.js
