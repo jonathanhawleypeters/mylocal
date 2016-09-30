@@ -16,7 +16,7 @@ class SearchLocation extends React.Component {
   }
 
   onInputChange(event) {
-    console.log('im in onInputChange', event.address_components);
+    console.log('im in onInputChange', event.address_components, event.formatted_address);
     this.setState({
       location: event.formatted_address,
       zip: event.address_components[7].short_name
@@ -47,6 +47,7 @@ class SearchLocation extends React.Component {
           onChange={ (this.onInputChange).bind(this) }
           onPlaceSelected={ (place) => this.onInputChange(place) }
           types={ ['address'] }
+          placeholder="Full address"
           required
         />
         <div style={{ 'marginTop':'10px' }}></div>

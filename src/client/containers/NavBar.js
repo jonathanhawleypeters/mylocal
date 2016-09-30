@@ -27,9 +27,9 @@ import { connect } from 'react-redux';
     return (
       <header className="navbar navbar-light navbar-fixed-top bd-navbar">
         <div className="container-fluid navbar-fluid">
-          <nav style={{ 'font-size': '20px' }}>
+          <nav style={{ 'fontSize': '20px' }}>
             <div className="clearfix">
-              <button className="navbar-toggler pull-xs-right hidden-sm-up" style={{ 'outline':'none', 'margin-top': '13px', 'color': '#999' }} type="button" data-toggle="collapse" data-target="#bd-main-nav" aria-controls="bd-main-nav" aria-expanded="false" aria-label="Toggle navigation">
+              <button className="navbar-toggler pull-xs-right hidden-sm-up" style={{ 'outline':'none', 'marginTop': '13px', 'color': '#999' }} type="button" data-toggle="collapse" data-target="#bd-main-nav" aria-controls="bd-main-nav" aria-expanded="false" aria-label="Toggle navigation">
                 ☰
               </button>
               <Link className="navbar-brand hidden-sm-up" to="/"><img src="img/logo.svg" style={{ 'width': '80px' }} /></Link>
@@ -40,7 +40,7 @@ import { connect } from 'react-redux';
                   <Link className="navbar-brand" to="/"><img src="img/logo.svg" style={{ 'width': '80px' }}/></Link>
                 </li>
               </ul>
-              <ul className="nav navbar-nav pull-sm-right" style={{ 'margin-top': '13px'}}>
+              <ul className="nav navbar-nav pull-sm-right" style={{ 'marginTop': '13px'}}>
                 <li className="nav-item">
                   <Link className="nav-item nav-link active" to="/">Home</Link>
                 </li>
