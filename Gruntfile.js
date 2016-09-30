@@ -136,5 +136,4 @@ module.exports = function(grunt) {
       grunt.task.run([ 'buildDev' ]);
       grunt.task.run([ 'devServer' ]);
   });
-
 };
