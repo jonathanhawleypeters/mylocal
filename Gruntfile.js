@@ -56,15 +56,6 @@ module.exports = function(grunt) {
     },
 
     shell: {
-      prodServer: {
-        options: {
-          stdout: true,
-          stderr: true
-        },
-        command: [
-          'cp src/public/index-prod.html src/public/index.html'
-          ].join('&&')
-      },
       devServer: {
         options: {
           stdout: true,
@@ -82,15 +73,6 @@ module.exports = function(grunt) {
         },
         command: [
           'webpack',
-          ].join('&&')
-      },
-      node: {
-        options: {
-          stdout: true,
-          stderr: true
-        },
-        command: [
-          'forever start src/index.js',
           ].join('&&')
       }
     }
@@ -116,22 +98,17 @@ module.exports = function(grunt) {
     grunt.task.run([ 'watch' ]);
   });
 
-  grunt.registerTask('buildProd', [
-    'shell:webpack', 'uglify', 'cssmin'
-  ]);
-
   grunt.registerTask('buildDev', [
     'shell:webpack'
   ]);
-
-  grunt.registerTask('prod', function(n) {
-      grunt.task.run([ 'shell:prodServer' ]);
-      grunt.task.run([ 'buildProd' ]);
-  });
 
   grunt.registerTask('local', function(n) {
       grunt.task.run([ 'shell:devServer' ]);
       grunt.task.run([ 'buildDev' ]);
       grunt.task.run([ 'devServer' ]);
   });
+
+  grunt.registerTask('prod', [
+    'uglify', 'cssmin'
+  ]);
 };
