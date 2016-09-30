@@ -4,7 +4,7 @@ var User = require('../db/user');
 // For authentication
 const jwt = require('jwt-simple');
 const secret = process.env.SECRET;
-// helper function to encode the token given the user obj 
+// helper function to encode the token given the user obj
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
   return jwt.encode({ sub: user.id, iat: timestamp }, secret);

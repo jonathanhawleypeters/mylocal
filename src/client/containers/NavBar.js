@@ -13,13 +13,16 @@ import { connect } from 'react-redux';
         <li className="nav-item" key={ 2 }>
           <Link to="/signup" className="nav-item nav-link active">Sign up</Link>
         </li>
-      ]
+      ];
     } else {
-      return (
-        <li className="nav-item">
+      return [
+         <li className="nav-item" key={ 1 }>
+          <Link to="/" className="nav-item nav-link active">{this.props.name}</Link>
+        </li>,
+        <li className="nav-item" key= { 2 } >
           <Link to="/signout" className="nav-item nav-link active">Sign Out</Link>
         </li>
-      );
+      ];
     }
   }
 
@@ -56,7 +59,8 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state){
   return {
-    authenticated : state.auth.authenticated
+    authenticated : state.auth.authenticated,
+    name: state.auth.name
   };
 }
 
