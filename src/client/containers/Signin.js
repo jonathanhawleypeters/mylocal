@@ -27,22 +27,21 @@ class Signin extends Component {
     return (
         // note latest redux form gives warning message on spread operator, but still works
         // rolled back to redux 5.33, since 6.05 uses a different format.
-        <div style={{textAlign:"center", marginTop: 200+"px"}}>
-          <div className="col-md-4 offset-md-4 col-sm-8 offset-sm-2">
+        <div className="main-banner" style={{ textAlign:"center" }}>
+          <div className="col-md-4 offset-md-4 col-sm-8 offset-sm-2" style={{ marginTop:'150px' }}>
             <h3 style={{marginTop:15+"px", fontFamily:"Julius Sans One"}}>Sign In</h3>
             <hr />
             <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} >
-                <fieldset className="form-group">
-
-                  <input {...email} className="form-control inputBox" style={{display:'block', width:'90 %', border: '1 px solid #ddd', outline:'none', padding:'7px', margin:'0 auto' }} placeholder="Email..." />
-                </fieldset>
-                <fieldset className="form-group">
-                    <input {...password} type="password" className="form-control inputBox" style={{display:'block', width:'90 %', border: '1 px solid #ddd', outline:'none', padding:'7px', margin:'0 auto' }} placeholder="Password..." />
-                </fieldset>
-                {this.renderAlert()}
+              <div className="form-group">
+                <input {...email} type="text" style={{ 'border-radius': '5px', 'display': 'block', 'width': '100%', 'border': '1px solid #ddd', 'outline': 'none', 'padding': '7px', 'margin': '0 auto' }} placeholder="Email.." required />
+              </div>
+              <div className="form-group">
+                <input {...password} type="password" style={{ 'border-radius': '5px', 'display': 'block', 'width': '100%', 'border': '1px solid #ddd', 'outline': 'none', 'padding': '7px', 'margin': '0 auto' }} placeholder="Password.." required />
+              </div>
+              {this.renderAlert()}
               <button action="submit" className="btn btn-primary" style={{marginTop:'5px', width:'100%', border:'none', outline:'none', padding:'16px', backgroundColor:'lightgreen', color:'white', fontSize:'20px'}}>Sign in</button>
-              <div style={{ marginTop: 15+'px'}}><Link to="/signup">Don't have an account? <strong>Signup</strong>...</Link></div>
-              </form>
+              <div style={{ marginTop: 15+'px'}}><Link to="/signup" style={{ 'textDecoration': 'none' }}>>Don't have an account? <strong>Signup</strong>...</Link></div>
+            </form>
           </div>
         </div>
     );
