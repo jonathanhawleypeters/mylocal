@@ -5,7 +5,6 @@ export default function(state = [], action) {
   switch(action.type) {
 
     case SEARCH_EVENTBRITE:
-    console.log('im in reducer', action.payload);
     return action.payload;
   }
 
