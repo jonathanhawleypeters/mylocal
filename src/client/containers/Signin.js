@@ -28,7 +28,7 @@ class Signin extends Component {
         // note latest redux form gives warning message on spread operator, but still works
         // rolled back to redux 5.33, since 6.05 uses a different format.
         <div className="main-banner" style={{ textAlign:"center" }}>
-          <div className="col-md-4 offset-md-4 col-sm-8 offset-sm-2" style={{ marginTop:'150px' }}>
+          <div className="col-md-4 offset-md-4 col-sm-8 offset-sm-2" style={{ marginTop:'250px' }}>
             <h3 style={{marginTop:15+"px", fontFamily:"Julius Sans One"}}>Sign In</h3>
             <hr />
             <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} >
