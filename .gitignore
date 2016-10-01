@@ -16,4 +16,6 @@ src/public/dist/
 .env
 mylocal.pem
 
+.tmp
+
 
