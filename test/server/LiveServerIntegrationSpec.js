@@ -16,9 +16,9 @@ describe('server', function() {
     });
   });
 
-  it('Should contain "Where do you want to find..."', function(done) {
-    request('http://52.209.209.216:3000/location', function(error, response, body) {
-      expect(body).to.contain('Where do you want to find');
+  it('Should contain "Where do you want to find"', function(done) {
+    request('http://52.209.209.216:3000/search', function(error, response, body) {
+      expect(body).to.contain('app');
       done();
     });
   });
@@ -30,16 +30,16 @@ describe('server', function() {
     });
   });
 
-  it('should accept POST requests to /send', function(done) {
+  it('should accept POST requests to /signup', function(done) {
     var requestParams = {method: 'POST',
-      uri: 'http://127.0.0.1:3000/classes/messages',
+      uri: 'http://52.209.209.216:3000/signup',
       json: {
-        username: 'Jono',
-        message: 'Do my bidding!'}
+        email: 'Jono3@jono.com',
+        password: 'Do my bidding!'}
     };
 
     request(requestParams, function(error, response, body) {
-      expect(response.statusCode).to.equal(201);
+      expect(response.statusCode).to.equal(200);
       done();
     });
   });
