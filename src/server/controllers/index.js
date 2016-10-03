@@ -11,8 +11,15 @@ function tokenForUser(user) {
 }
 // Returns a token, if it gets here then already authenticated by passport middleware
 exports.signin = function(req, res) {
-  res.send({ token: tokenForUser(req.user) });
+  console.log(req.user);
+  res.send({
+    token: tokenForUser(req.user),
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    address: req.user.address
+  });
 };
+
 exports.signup = function(req, res) {
   var email = req.body.email;
   var password = req.body.password;
