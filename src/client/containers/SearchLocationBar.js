@@ -2,10 +2,10 @@ import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import { searchYelp } from '../actions/SearchYelp';
-import { searchEventbrite } from '../actions/EventbriteSearchAction';
+import { searchYelp } from '../actions';
+import { searchEventbrite } from '../actions';
 
-class SearchLocation extends React.Component {
+class SearchLocationBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,6 @@ class SearchLocation extends React.Component {
   }
 
   onInputChange(event) {
-    console.log('im in onInputChange', event.address_components, event.formatted_address);
     this.setState({
       location: event.formatted_address,
       zip: event.address_components[7].short_name
@@ -26,18 +25,14 @@ class SearchLocation extends React.Component {
   onFormSubmit(event) {
     // Tells the browser not to refresh page
     event.preventDefault();
-    if (this.props.terms.type === 'restaurant'){
-    this.props.searchYelp(this.state.location, this.props.terms.query);
-
-    } else if(this.props.terms.type === 'events'){
-      this.props.searchEventbrite(this.props.terms.query, this.state.zip);
+    if (this.props.searchTerms.type === 'restaurant') {
+    this.props.searchYelp(this.state.location, this.props.searchTerms.query);
+    } else if(this.props.searchTerms.type === 'events') {
+      this.props.searchEventbrite(this.props.searchTerms.query, this.state.zip);
     }
-
   }
 
   render() {
-    console.log('checking props in Search Location', this.props.terms)
-
     return (
       <form onSubmit={ this.onFormSubmit.bind(this) }>
         <Autocomplete
@@ -53,7 +48,7 @@ class SearchLocation extends React.Component {
         <div style={{ 'marginTop':'10px' }}></div>
         <button className="btn btn-outline-info btn-lg btn-main-custom">Submit</button>
         { !this.state.results.length ? '' : this.state.results.map((restaurant) => {
-            return (<div>{restaurant.name}</div>)
+            return (<div>{ restaurant.name }</div>)
           })
         }
       </form>
@@ -61,10 +56,8 @@ class SearchLocation extends React.Component {
   }
 }
 
-var mapStateToProps = function (state) {
-  return {
-    terms: state.SearchTerms
-  }
+var mapStateToProps = function ({ searchTerms }) {
+  return { searchTerms }
 }
 
-export default connect (mapStateToProps, { searchYelp, searchEventbrite })(SearchLocation);
+export default connect (mapStateToProps, { searchYelp, searchEventbrite })(SearchLocationBar);
