@@ -4,6 +4,7 @@ import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from '../constants';
 import { SEARCH_TERMS }                       from '../constants';
 import { EVENTBRITE_RESULTS }                 from '../constants';
 import { YELP_RESULTS }                       from '../constants';
+import { RESTAURANT }                         from '../constants'
 
 // action submits email, pw to the server
 // action creator > action > Dispatch > sent to all reducers
@@ -25,20 +26,19 @@ export function signinUser({ email, password }) {
       dispatch(authError('Wrong login'));
     });
   };
-}
+};
 
 export function authError(error) {
   return {
     type: AUTH_ERROR,
     payload: error
   };
-}
+};
 
 export function signoutUser() {
   localStorage.removeItem('token');
   return { type: UNAUTH_USER };
-
-}
+};
 
 export function signupUser({ email, password, firstName, lastName, address }) {
   return function(dispatch) {
@@ -50,7 +50,7 @@ export function signupUser({ email, password, firstName, lastName, address }) {
     })
     .catch(error => dispatch(authError(error.response.data.error)));
   };
-}
+};
 
 export function submitQueryAndType (query, type) {
   return {
@@ -60,7 +60,7 @@ export function submitQueryAndType (query, type) {
       type: type
     }
   }
-}
+};
 
 export function searchEventbrite (query, location) {
   const EVENTBRITE_API_KEY = "4JELE3WKM2XRYPGWNE7Q";
@@ -79,7 +79,7 @@ export function searchEventbrite (query, location) {
       console.log(error);
     });
   };
-}
+};
 
 export function searchYelp (location) {
   const YELP_URL = '/search/restaurants';
@@ -97,4 +97,19 @@ export function searchYelp (location) {
       console.log(error);
     });
   };
-}
+};
+
+export function fetchRestaurant(id) {
+  return function(dispatch) {
+    axios.get(`/fetchRestaurant/${id}`)
+    .then(response => {
+      dispatch({
+        type: RESTAURANT,
+        payload: response.data
+       })
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+};

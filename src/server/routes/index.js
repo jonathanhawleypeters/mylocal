@@ -26,6 +26,9 @@ router.get('/secured', requireAuth, function(req, res) {
   res.send({ success: true });
 });
 
+// get a single restaurant selected by user
+router.get('/fetchRestaurant/:id', handler.fetchRestaurant);
+
 //catchall
 router.get('/*', function (req, res) {
   res.sendFile('index.html', { root: __dirname + '/../../public/' });

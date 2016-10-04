@@ -8,14 +8,6 @@ header {
   font-family: 'Julius Sans One', sans-serif;
 }
 
-hr {
-  width: 60%;
-}
-
-form > div:first-of-type {
-  display: inline-block !important;
-}
-
 .navbar-brand, .nav-item {
   color: #00a4d3 !important;
 }
@@ -39,18 +31,13 @@ form > div:first-of-type {
   font-size: 4.5rem !important;
 }
 
-.main-bg-text-search-blue {
-  color:#00a4d3;
-  font-size: 2rem !important;
-}
-
 .main-bg-text-hero-blue {
   color:#00a4d3;
   margin-top:20px
 }
 
 .inputBox {
-  padding:9px 10px 5px 10px;
+  padding:0 10px;
   border: 2px solid #c0c0c0;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1.7rem;
@@ -63,7 +50,7 @@ form > div:first-of-type {
 
 .typeSelect {
   font-size: 1.7rem;
-  padding:4px 35px 13px 20px;
+  padding:0px 35px 0px 20px;
   border: 2px solid #c0c0c0;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -92,8 +79,9 @@ form > div:first-of-type {
 }
 
 .btn-main-custom {
-  padding: 13px 70px !important;
+  padding: 13px 60px !important;
   outline: none !important;
+  margin-top: 20px;
 }
 
 .howItWorks {
@@ -117,7 +105,7 @@ form > div:first-of-type {
   margin-top:30px
 }
 
-.container-fluid {
+.navbar-fluid {
   padding-left: 50px !important;
   padding-right: 50px !important;
 }
@@ -134,4 +122,90 @@ form > div:first-of-type {
   font-family: 'Julius Sans One', sans-serif;
   display:table;
   margin: 0 auto;
+}
+
+.location {
+  height: 80%;
+  margin-top: 10%;
+  background-color: #f7f6f6;
+  padding: 30px;
+  text-align: center;
+  font-family: 'Julius Sans One'
+}
+
+.text-main {
+  color: #00a4d3;
+}
+
+.hr {
+  margin-left: 5% !important;
+  margin-right: 5% !important;
+}
+
+.locInput {
+  padding: 5px 10px;
+  font-family: 'Josefin Sans';
+  font-size: 18px;
+  border: #bbb 1px solid;
+  border-radius: 3px;
+  width: 300px;
+  outline: none;
+  color: #999;
+}
+
+div.pac-container.pac-logo::after {
+  display: none;
+}
+
+.searchresults-main {
+  color: #00c8f8;
+  float: left;
+  margin-top: 10px;
+}
+
+.results {
+  font-family: 'Julius Sans One';
+  padding: 30px 50px;
+}
+
+.filter {
+  float: right;
+}
+
+.clearfloat {
+  clear: both;
+}
+
+.result {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 5%;
+  border: 1px solid #d7d7d7;
+}
+
+.result-img {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.locationPointer,
+.star-rating {
+  font-size: 40px !important;
+  color: #ccc;
+}
+
+.star-on {
+  color: #f4eb49;
+}
+.desc {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+
+.main-banner {
+  background-image: url(../img/main-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }

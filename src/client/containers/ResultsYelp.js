@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
+import { browserHistory }   from 'react-router';
 
 class ResultsYelp extends Component {
   render() {
@@ -14,18 +15,17 @@ class ResultsYelp extends Component {
           return (
             <div className="result" key={ restaurant.id }>
               <div className="row">
-                <div className="col-md-3">
-                  <img src={ !!restaurant.image_url ? restaurant.image_url : "http://resources.ennect.com/_images/application/event/no-selected-image-placeholder-large.gif" } alt="" className="result-img img-fluid" style={{ 'width': '100%' }} />
-                  <button style={{ 'width': '100%' }} className="btn btn-info btn-main-custom">More Info</button>
-                  <button style={{ 'width': '100%' }} className="btn btn-outline-info btn-main-custom">Reviews</button>
+                <div className="col-md-2">
+                  <img src={ !!restaurant.image_url ? restaurant.image_url : "http://resources.ennect.com/_images/application/event/no-selected-image-placeholder-large.gif" } alt="" className="img-fluid result-img" style={{ 'width': '100%' }} />
+                  <button style={{ 'width': '100%' }} className="btn btn-info btn-main-custom" onClick={() => { browserHistory.push(`/restaurant/${restaurant.id}`) }}>More Info</button>
                 </div>
-                <div className="col-md-9">
+                <div className="col-md-10">
                   <h3 style={{"marginTop":"20px"}}>{ restaurant.name }</h3>
-                  <i className={ `material-icons star-rating ${ Math.round(restaurant.rating) >= 1 ? 'star-on' : '' }` }>star</i>
-                  <i className={ `material-icons star-rating ${ Math.round(restaurant.rating) >= 2 ? 'star-on' : '' }` }>star</i>
-                  <i className={ `material-icons star-rating ${ Math.round(restaurant.rating) >= 3 ? 'star-on' : '' }` }>star</i>
-                  <i className={ `material-icons star-rating ${ Math.round(restaurant.rating) >= 4 ? 'star-on' : '' }` }>star</i>
-                  <i className={ `material-icons star-rating ${ Math.round(restaurant.rating) >= 5 ? 'star-on' : '' }` }>star</i>
+                  <i className={ `material-icons star-rating ${ Math.floor(restaurant.rating) >= 1 ? 'star-on' : '' }` }>star</i>
+                  <i className={ `material-icons star-rating ${ Math.floor(restaurant.rating) >= 2 ? 'star-on' : '' }` }>star</i>
+                  <i className={ `material-icons star-rating ${ Math.floor(restaurant.rating) >= 3 ? 'star-on' : '' }` }>star</i>
+                  <i className={ `material-icons star-rating ${ Math.floor(restaurant.rating) >= 4 ? 'star-on' : '' }` }>star</i>
+                  <i className={ `material-icons star-rating ${ Math.floor(restaurant.rating) >= 5 ? 'star-on' : '' }` }>star</i>
                   <div style={{"marginTop":"5px"}}></div>
                   <i className="material-icons locationPointer">location_on</i>
                   { restaurant.location.display_address.join(', ') }

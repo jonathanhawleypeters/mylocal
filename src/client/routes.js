@@ -8,6 +8,7 @@ import ResultsYelp       from './containers/ResultsYelp';
 import ResultsEventbrite from './containers/ResultsEventbrite';
 import Signout           from './containers/Signout';
 import Signup            from './containers/Signup';
+import Profile           from './containers/Profile';
 
 export default (
   <Router path="/" component = { App } >
@@ -18,5 +19,6 @@ export default (
       <Route path="/search/events" component = { ResultsEventbrite } />
       <Route path="/signout" component = { Signout } />
       <Route path="/signup" component = { Signup } />
+      <Route path="/restaurant/:id" component={ Profile } />
   </Router>
 );
