@@ -26,8 +26,8 @@ class SearchLocationBar extends React.Component {
     // Tells the browser not to refresh page
     event.preventDefault();
     if (this.props.searchTerms.type === 'restaurant') {
-    this.props.searchYelp(this.state.location, this.props.searchTerms.query);
-    } else if(this.props.searchTerms.type === 'events') {
+      this.props.searchYelp(this.state.location, this.props.searchTerms.query + ' restaurant');
+    } else if (this.props.searchTerms.type === 'events') {
       this.props.searchEventbrite(this.props.searchTerms.query, this.state.zip);
     }
   }
