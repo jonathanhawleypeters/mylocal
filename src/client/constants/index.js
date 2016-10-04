@@ -4,3 +4,4 @@ export const AUTH_ERROR = 'auth_error';
 export const SEARCH_TERMS = 'SEARCH_TERMS';
 export const EVENTBRITE_RESULTS = 'EVENTBRITE_RESULTS';
 export const YELP_RESULTS = 'YELP_RESULTS';
+export const RESTAURANT = 'RESTAURANT';

@@ -65,3 +65,13 @@ exports.searchYelp = function(req, res) {
       res.send(err);
     });
 };
+
+exports.fetchRestaurant = function(req, res) {
+  yelp.business(req.params.id)
+    .then(function(data) {
+      res.send(data);
+    })
+    .catch(function(err) {
+      res.send(err)
+    });
+};
