@@ -29,7 +29,7 @@ class SearchLanding extends React.Component {
   render() {
     return (
       <form onSubmit={ this.onFormSubmit.bind(this) }>
-        <input placeholder="Search" className="inputBox" required
+        <input placeholder="Search" className="inputBox"
           value={ this.state.term }
           onChange={ (this.onInputChange).bind(this) }
         />

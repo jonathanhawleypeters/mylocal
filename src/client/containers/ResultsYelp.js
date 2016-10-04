@@ -6,6 +6,7 @@ class ResultsYelp extends Component {
   render() {
     return (
       <div className="results">
+        <div style={{ "marginTop": "84px"}}></div>
         <h2 className="searchresults-main">Search Results for Restaurants</h2>
         <input placeholder="Filter" className="inputBox filter" />
         <div className="clearfloat"></div>

@@ -81,11 +81,11 @@ export function searchEventbrite (query, location) {
   };
 };
 
-export function searchYelp (location) {
+export function searchYelp (location, query) {
   const YELP_URL = '/search/restaurants';
   return function(dispatch) {
     browserHistory.push('/search/restaurants');
-    const url = `${ YELP_URL }?location=${ location }&term=restaurant`;
+    const url = `${ YELP_URL }?location=${ location }&term=${query}`;
     const request = axios.get(url)
     .then(response => {
       dispatch({
