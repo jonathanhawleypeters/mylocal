@@ -19,7 +19,7 @@ router.post('/signup', handler.signup);
 router.post('/signin', requireSignin, handler.signin);
 
 // call from client for yelp search
-router.get('/search/restaurants', handler.searchYelp);
+router.get('/api/search/restaurants', handler.searchYelp);
 
 // example: protected route
 router.get('/secured', requireAuth, function(req, res) {

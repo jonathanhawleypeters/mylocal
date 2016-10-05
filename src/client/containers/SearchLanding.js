@@ -33,13 +33,15 @@ class SearchLanding extends React.Component {
           value={ this.state.term }
           onChange={ (this.onInputChange).bind(this) }
         />
-        <select className="typeSelect" defaultValue="" onChange={ (this.onTypeChange).bind(this) } required>
+        <select className="typeSelect" defaultValue="" onChange={ (this.onTypeChange).bind(this) } required style={{ 'marginLeft': '5px' }}>
           <option disabled value="">- Type -</option>
-          <option value="restaurant">Restaurants</option>
+          <option value="restaurants">Restaurants</option>
           <option value="events">Events</option>
           <option value="jobs">Jobs</option>
           <option value="volunteers">Volunteers</option>
         </select>
+        <div></div>
+        <button className="btn btn-outline-info btn-main-custom">Next</button>
       </form>
     );
   }

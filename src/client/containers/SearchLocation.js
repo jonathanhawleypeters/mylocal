@@ -1,14 +1,20 @@
 import React             from 'react';
-import SearchLocationBar from '../containers/SearchLocationBar';
+import SearchLocationBar from './SearchLocationBar';
 import { connect }       from 'react-redux';
+import { browserHistory} from 'react-router';
 
-export default class SearchLocation extends React.Component {
+class SearchLocation extends React.Component {
+  componentWillMount() {
+    if(!this.props.searchTerms.type) {
+      browserHistory.push('/')
+    }
+  }
 
   render() {
     return (
       <div className="main-bg">
         <div className="main-bg-text">
-          <h1 className="main-text">Where do you want to find it?</h1>
+          <h1 className="main-text">Where do you want to find { this.props.searchTerms.type }?</h1>
           <hr className="hr" />
           <div className="divider"></div>
           <SearchLocationBar searchTerms={ this.props.searchTerms }/>
@@ -21,6 +27,6 @@ export default class SearchLocation extends React.Component {
 
 var mapStateToProps = function ({ searchTerms }) {
   return { searchTerms }
-}
+};
 
 export default connect (mapStateToProps)(SearchLocation);

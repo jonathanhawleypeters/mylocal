@@ -66,8 +66,7 @@ export function searchEventbrite (query, location) {
   const EVENTBRITE_API_KEY = "4JELE3WKM2XRYPGWNE7Q";
   const EVENTBRITE_URL = `https://www.eventbriteapi.com/v3/events/search/?token=${ EVENTBRITE_API_KEY }`;
   return function(dispatch) {
-    browserHistory.push('/search/events');
-    const url = `${ EVENTBRITE_URL }&q=${ query }&location.address=${ location }`;
+    const url = `${ EVENTBRITE_URL }&q=${ query }&sort_by=best&location.address=${ location }`;
     const request = axios.get(url)
     .then(response => {
       dispatch({
@@ -82,10 +81,9 @@ export function searchEventbrite (query, location) {
 };
 
 export function searchYelp (location, query) {
-  const YELP_URL = '/search/restaurants';
+  const YELP_URL = '/api/search/restaurants';
   return function(dispatch) {
-    browserHistory.push('/search/restaurants');
-    const url = `${ YELP_URL }?location=${ location }&term=${query}`;
+    const url = `${ YELP_URL }?location=${ location }&term=${ query }`;
     const request = axios.get(url)
     .then(response => {
       dispatch({
@@ -101,7 +99,7 @@ export function searchYelp (location, query) {
 
 export function fetchRestaurant(id) {
   return function(dispatch) {
-    axios.get(`/fetchRestaurant/${id}`)
+    axios.get(`/fetchRestaurant/${ id }`)
     .then(response => {
       dispatch({
         type: RESTAURANT,
