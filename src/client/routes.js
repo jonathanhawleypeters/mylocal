@@ -9,16 +9,17 @@ import ResultsEventbrite from './containers/ResultsEventbrite';
 import Signout           from './containers/Signout';
 import Signup            from './containers/Signup';
 import Profile           from './containers/Profile';
+import Tasks             from './containers/Tasks';
 
 export default (
   <Router path="/" component = { App } >
     <IndexRoute component = { Home } />
-    <Route path="/signin" component = { Signin }/>
-    <Route path="/search" component = { SearchLocation } />
-    <Route path="/search/restaurants" component = { ResultsYelp } />
-    <Route path="/search/events" component = { ResultsEventbrite } />
-    <Route path="/signout" component = { Signout } />
-    <Route path="/signup" component = { Signup } />
-    <Route path="/restaurant/:id" component={ Profile } />
+      <Route path="/signin" component = { Signin }/>
+      <Route path="/search" component = { SearchLocation } />
+      <Route path="/search/restaurants" component = { ResultsYelp } />
+      <Route path="/search/events" component = { ResultsEventbrite } />
+      <Route path="/signout" component = { Signout } />
+      <Route path="/signup" component = { Signup } />
+      <Route path="/tasks" component = { Tasks } />
   </Router>
 );
