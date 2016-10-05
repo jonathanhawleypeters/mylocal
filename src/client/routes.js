@@ -3,7 +3,7 @@ import { Route, IndexRoute, browserHistory, Router } from 'react-router';
 import App               from './components/App';
 import Home              from './components/Home';
 import Signin            from './containers/Signin';
-import SearchLocation    from './components/SearchLocation';
+import SearchLocation    from './containers/SearchLocation';
 import ResultsYelp       from './containers/ResultsYelp';
 import ResultsEventbrite from './containers/ResultsEventbrite';
 import Signout           from './containers/Signout';
