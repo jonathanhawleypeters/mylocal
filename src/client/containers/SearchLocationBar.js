@@ -17,18 +17,17 @@ class SearchLocationBar extends React.Component {
 
   onInputChange(event) {
     this.setState({
-      location: event.formatted_address,
-      zip: event.address_components[7].short_name
+      location: event.formatted_address || event.target.value
     });
   }
 
   onFormSubmit(event) {
-    // Tells the browser not to refresh page
     event.preventDefault();
-    if (this.props.searchTerms.type === 'restaurant') {
-      this.props.searchYelp(this.state.location, this.props.searchTerms.query + ' restaurant');
+    console.log(this.state.location)
+    if (this.props.searchTerms.type === 'restaurants') {
+      browserHistory.push(`/search/restaurants?q=${ this.props.searchTerms.query }&location=${ this.state.location }`)
     } else if (this.props.searchTerms.type === 'events') {
-      this.props.searchEventbrite(this.props.searchTerms.query, this.state.zip);
+      browserHistory.push(`/search/events?q=${ this.props.searchTerms.query }&location=${ this.state.location }`)
     }
   }
 
@@ -56,8 +55,4 @@ class SearchLocationBar extends React.Component {
   }
 }
 
-var mapStateToProps = function ({ searchTerms }) {
-  return { searchTerms }
-}
-
-export default connect (mapStateToProps, { searchYelp, searchEventbrite })(SearchLocationBar);
+export default connect (null, { searchYelp, searchEventbrite })(SearchLocationBar);

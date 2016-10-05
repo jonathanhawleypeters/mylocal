@@ -50,7 +50,7 @@ header {
 
 .typeSelect {
   font-size: 1.7rem;
-  padding:0px 35px 0px 20px;
+  padding:0px 100px 0px 20px;
   border: 2px solid #c0c0c0;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -257,6 +257,11 @@ div.pac-container.pac-logo::after {
 
 hr.review-line-sm {
   display: none
+}
+
+.btn-more-info {
+  outline: none !important;
+  margin-top: 20px;
 }
 
 @media (max-width: 992px) {

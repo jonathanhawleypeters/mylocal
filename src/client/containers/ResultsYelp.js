@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
 import { browserHistory }   from 'react-router';
+import { searchYelp }       from '../actions';
 
 class ResultsYelp extends Component {
+  componentDidMount() {
+    this.props.searchYelp(this.props.location.query.location, this.props.location.query.q + ' restaurant');
+  }
+
   render() {
     return (
       <div className="results">
-        <div style={{ "marginTop": "84px"}}></div>
+        <div style={{ "marginTop": "84px" }}></div>
         <h2 className="searchresults-main">Search Results for Restaurants</h2>
         <input placeholder="Filter" className="inputBox filter" />
         <div className="clearfloat"></div>
@@ -18,7 +23,9 @@ class ResultsYelp extends Component {
               <div className="row">
                 <div className="col-md-2">
                   <img src={ !!restaurant.image_url ? restaurant.image_url : "http://resources.ennect.com/_images/application/event/no-selected-image-placeholder-large.gif" } alt="" className="img-fluid result-img" style={{ 'width': '100%' }} />
-                  <button style={{ 'width': '100%' }} className="btn btn-info btn-main-custom" onClick={() => { browserHistory.push(`/restaurant/${restaurant.id}`) }}>More Info</button>
+                  <a href={ restaurant.url }>
+                    <button style={{ 'width': '100%' }} className="btn btn-info btn-more-info">More</button>
+                  </a>
                 </div>
                 <div className="col-md-10">
                   <h3 style={{"marginTop":"20px"}}>{ restaurant.name }</h3>
@@ -47,4 +54,4 @@ var mapStateToProps = function({ yelpResults }) {
   return { yelpResults };
 };
 
-export default connect(mapStateToProps)(ResultsYelp)
+export default connect(mapStateToProps, { searchYelp })(ResultsYelp)

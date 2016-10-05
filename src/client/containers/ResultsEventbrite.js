@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
+import { searchEventbrite } from '../actions';
+
 
 class ResultsEventbrite extends Component {
+  componentWillMount() {
+    this.props.searchEventbrite(this.props.location.query.q, this.props.location.query.location)
+  }
   render() {
     return (
       <div className="results">
@@ -19,7 +24,7 @@ class ResultsEventbrite extends Component {
               <div className="col-md-3">
                 <img src={ !!eventData.logo ? eventData.logo.url : "http://resources.ennect.com/_images/application/event/no-selected-image-placeholder-large.gif" } alt="" className="result-img img-fluid" style={{ width: '100%'}} />
                 <a href={ eventData.url }>
-                <button style={{ width: '100%' }} className="btn btn-info btn-main-custom">More Info</button>
+                  <button style={{ width: '100%' }} className="btn btn-info btn-main-custom">More Info</button>
                 </a>
               </div>
               <div className="col-md-9">
@@ -42,4 +47,4 @@ function mapStateToProps({ eventbriteResults }) {
   return { eventbriteResults }
 };
 
-export default connect(mapStateToProps)(ResultsEventbrite)
+export default connect(mapStateToProps, { searchEventbrite })(ResultsEventbrite)
