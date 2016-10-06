@@ -40,10 +40,11 @@ export default class AddTask extends Component {
           onRequestClose={this.closeM2000} 
           style={{
             content: {
-              top: "100px"
+              top: "100px",
+              color: "black"
             }
           }}>
-          <h2 ref="subtitle">Add Task</h2>
+          <h2 style={{color: '#00a4d3'}}>Add Task</h2>
           {this.state.modalIsOpen ? <TaskForm close={this.closeModal} /> : <br />}
         </Modal>
       </li>

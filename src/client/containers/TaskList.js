@@ -10,16 +10,20 @@ class TaskList extends Component {
   render(){
     return (
       <div>
-        <div style={{ marginTop: "170px" }} ></div>
+        <div style={{ marginTop: "100px" }} ></div>
+        <h1 style={{ marginLeft: "75px" }}>Search Results for Tasks</h1>
         { this.props.tasks.map(function(taskData) {
           return (
             <div className="result" key={taskData._id}>
               <div className="row">
                 <div className="col-md-3">
-                  <img src="http://resources.ennect.com/_images/application/event/no-selected-image-placeholder-large.gif" alt="" className="result-img img-fluid" style={{ width: '100%'}} />
+                  <img src="/img/howto-banner.jpg" alt="" className="result-img img-fluid" style={{ width: '100%'}} />
+                  <a href={'mailto:'+taskData.owner}>
+                  <button style={{ width: '100%' }} className="btn btn-info btn-main-custom">Send Email</button>
+                  </a>
                 </div>
                 <div className="col-md-9">
-                  <h3 style={{ marginTop: '20px' }}>{ taskData.title }</h3>
+                  <h3 style={{ marginTop: '20px', color: '#00a4d3' }}>{ taskData.title }</h3>
                   <div style={{ marginTop: '5px' }}></div>
                   <hr />
                   <h4>Description</h4>
