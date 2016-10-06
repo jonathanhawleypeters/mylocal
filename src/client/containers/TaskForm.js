@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Autocomplete from 'react-google-autocomplete';
+import Autocomplete         from 'react-google-autocomplete';
 import { connect }          from 'react-redux';
-import { addTask }       from '../actions';
+import { addTask }          from '../actions';
+import { browserHistory }   from 'react-router';
 
 class TaskForm extends Component {
   constructor(props){
@@ -23,6 +24,7 @@ class TaskForm extends Component {
     this.onVolunteerChange = this.onVolunteerChange.bind(this);
     this.onLocationChange = this.onLocationChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onCancel = this.onCancel.bind(this);
   }
 
   onVolunteerChange(event) {
@@ -58,6 +60,12 @@ class TaskForm extends Component {
     event.preventDefault();
     this.props.close();
     this.props.addTask( this.state.task, this.state.location);
+    browserHistory.push("/search/tasks/?location=");
+  }
+
+  onCancel(event) {
+    event.preventDefault();
+    this.props.close()
   }
 
   render() {
@@ -106,7 +114,7 @@ class TaskForm extends Component {
           onChange={this.onVolunteerChange} //This change handler is different
           value={this.state.task.volunteer}
         />
-        <label>Dollar Value</label>
+        <label>Price</label>
         <input
           className="inputBox"
           type="number"
@@ -126,7 +134,9 @@ class TaskForm extends Component {
           onPlaceSelected={this.onLocationChange}
           value={this.state.task.location}
         />
-        <button action="submit" >Submit</button>
+
+        <button action="submit" style={{margin: "35px 0"}}>Submit</button>
+        <button onClick={this.onCancel} style={{margin: "35px 20px"}}>Cancel</button>
         </div>
       </form>
 

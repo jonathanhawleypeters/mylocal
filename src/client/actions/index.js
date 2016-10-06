@@ -16,9 +16,10 @@ export function signinUser({ email, password }) {
   return function(dispatch) {
     axios.post('/signin', { email, password })
     .then(response => {
-      dispatch({ type: AUTH_USER, payload: 'welcome back!' });
+      dispatch({ type: AUTH_USER, payload: response.data.firstName + ' ' + response.data.lastName });
       browserHistory.push('/');
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', response.data.firstName + ' ' + response.data.lastName);
     })
     .catch(() => {
       dispatch(authError('Wrong login'));
@@ -35,6 +36,7 @@ export function authError(error) {
 
 export function signoutUser() {
   localStorage.removeItem('token');
+  localStorage.removeItem('user');
   return { type: UNAUTH_USER };
 };
 
@@ -46,6 +48,7 @@ export function signupUser(firstName, lastName, email, password, address, file) 
     .then(response =>{
       dispatch({ type: AUTH_USER, payload: firstName + ' ' + lastName});
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', response.data.firstName + ' ' + response.data.lastName);
       browserHistory.push('/');
     })
     .catch(error => dispatch(authError(error.response.data.error)));
