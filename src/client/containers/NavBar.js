@@ -23,7 +23,7 @@ import AddTask              from '../components/AddTask';
         <AddTask />,
         <li className="nav-item" key= { 2 } >
           <Link to="/signout" className="nav-item nav-link active">Sign Out</Link>
-        </li>
+        </li>,
       ];
     }
   }

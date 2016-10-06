@@ -12,7 +12,7 @@ class ResultsEventbrite extends Component {
       <div className="results">
       <div style={{ marginTop:'87px' }}> </div>
       <h2 className="searchresults-main">
-      { this.props.eventbriteResults.length === 0 ? "Searching for Events" : "Search Results for Restaurants" }</h2>
+      { this.props.eventbriteResults.length === 0 ? "Searching for Events" : "Search Results for Events" }</h2>
       <input placeholder="Filter" className="inputBox filter" />
       <div className="clearfloat"></div>
       { this.props.eventbriteResults.length === 0 ? <img className="loading" src="https://i.imgur.com/EATfJf4.gif" /> : <div></div> }
