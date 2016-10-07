@@ -9,7 +9,7 @@ import ResultsEventbrite from './containers/ResultsEventbrite';
 import Signout           from './containers/Signout';
 import Signup            from './containers/Signup';
 import Profile           from './containers/Profile';
-import Tasks             from './components/Tasks';
+import TaskList          from './containers/TaskList';
 import ProfileUser       from './containers/ProfileUser';
 import ServiceList       from './containers/ServiceList';
 
@@ -22,8 +22,8 @@ export default (
       <Route path="/search" component = { SearchLocation } />
       <Route path="/search/restaurants" component = { ResultsYelp } />
       <Route path="/search/events" component = { ResultsEventbrite } />
-      <Route path="/search/tasks" component = { Tasks } />
       <Route path="/search/services" component = { ServiceList } />
+      <Route path="/search/tasks" component = { TaskList } />
       <Route path="/user" component = { ProfileUser } />
   </Router>
 );
