@@ -11,7 +11,13 @@ class SearchLocation extends React.Component {
     };
   }
   componentWillMount() {
-    const location = JSON.parse(localStorage.getItem('location'))
+    let location
+    try{
+      location = JSON.parse(localStorage.getItem('location'))
+    } catch (exception) {
+      console.error(exception)
+      location = ''
+    }
     if (!!location) {
       this.setState({
         location: location
