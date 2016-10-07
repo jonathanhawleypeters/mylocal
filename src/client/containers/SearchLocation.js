@@ -4,20 +4,34 @@ import { connect }       from 'react-redux';
 import { browserHistory} from 'react-router';
 
 class SearchLocation extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      location: ''
+    };
+  }
   componentWillMount() {
+    const location = JSON.parse(localStorage.getItem('location'))
+    if (!!location) {
+      this.setState({
+        location: location
+      });
+    }
+
     if(!this.props.searchTerms.type) {
       browserHistory.push('/')
     }
   }
 
   render() {
+
     return (
       <div className="main-bg">
         <div className="main-bg-text">
           <h1 className="main-text">Where do you want to find { this.props.searchTerms.type }?</h1>
           <hr className="hr" />
           <div className="divider"></div>
-          <SearchLocationBar searchTerms={ this.props.searchTerms }/>
+          <SearchLocationBar searchTerms={ this.props.searchTerms } defaultLocation={this.state.location}/>
           <div className="divider"></div>
         </div>
       </div>

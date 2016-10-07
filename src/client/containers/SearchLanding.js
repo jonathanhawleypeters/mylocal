@@ -39,6 +39,7 @@ class SearchLanding extends React.Component {
           <option value="events">Events</option>
           <option value="tasks">Tasks</option>
           <option value="volunteers">Volunteers</option>
+          <option value="skilled tasker">Skilled Tasker</option>
         </select>
         <div></div>
         <button className="btn btn-outline-info btn-main-custom">Next</button>
