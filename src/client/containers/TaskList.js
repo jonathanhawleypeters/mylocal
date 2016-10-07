@@ -3,8 +3,23 @@ import { connect }          from 'react-redux';
 import { getTasks }         from '../actions';
 
 class TaskList extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: ''
+    }
+    this.searchChange = this.searchChange.bind(this);
+  }
   componentWillMount() {
     this.props.getTasks();
+  }
+
+  searchChange(e) {
+    console.log(e.target.value)
+    this.setState({
+      search: e.target.value
+    })
   }
 
   render(){
@@ -12,7 +27,13 @@ class TaskList extends Component {
       <div>
         <div style={{ marginTop: "100px" }} ></div>
         <h1 style={{ marginLeft: "75px" }}>Search Results for Tasks</h1>
-        { this.props.tasks.map(function(taskData) {
+        <form >
+          <input type="text" placeholder="Search" onChange={this.searchChange} value={this.state.search} />
+        </form>
+        { this.props.tasks.filter((taskData) => {
+          console.log(this.state.search)
+          return taskData.title.toUpperCase().includes(this.state.search.toUpperCase()) || taskData.description.toUpperCase().includes(this.state.search.toUpperCase())
+        }).map(function(taskData) {
           return (
             <div className="result" key={taskData._id}>
               <div className="row">
