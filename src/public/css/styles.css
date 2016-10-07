@@ -311,3 +311,7 @@ label {
   outline: none !important;
   margin-top: 20px;
 }
+
+td {
+  padding-right: 1em;
+}

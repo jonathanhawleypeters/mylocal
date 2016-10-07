@@ -22,7 +22,7 @@ export default class AddTask extends Component {
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
-    this.refs.subtitle.style.color = '#ff0000';
+    // this.refs.subtitle.style.color = '#ff0000';
   }
 
   closeModal() {
