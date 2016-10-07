@@ -53,7 +53,6 @@ class TaskForm extends Component {
       location: locObj,
       task: task
     });
-
   }
 
   onFormSubmit(event){

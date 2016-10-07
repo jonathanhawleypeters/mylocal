@@ -18,7 +18,8 @@ exports.signin = function(req, res) {
     token: tokenForUser(req.user),
     firstName: req.user.firstName,
     lastName: req.user.lastName,
-    address: req.user.address
+    address: req.user.address,
+    location: req.user.location
   });
 };
 
@@ -29,6 +30,7 @@ exports.signup = function(req, res) {
   var firstName = req.body.firstName;
   var lastName = req.body.lastName;
   var address = req.body.address;
+  var locObj = req.body.locObj;
   if (!email || !password) {
     return res.status(422).send({ error: 'You must submit email and password'});
   }
@@ -42,7 +44,8 @@ exports.signup = function(req, res) {
       password: password,
       firstName: firstName,
       lastName: lastName,
-      address: address
+      address: address,
+      location: locObj,
     });
     user.save(function(err) {
       if (err) return next(err);

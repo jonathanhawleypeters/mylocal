@@ -20,6 +20,7 @@ export function signinUser({ email, password }) {
       browserHistory.push('/');
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', response.data.firstName + ' ' + response.data.lastName);
+      localStorage.setItem('location', JSON.stringify(response.data.location))
     })
     .catch(() => {
       dispatch(authError('Wrong login'));
@@ -37,18 +38,20 @@ export function authError(error) {
 export function signoutUser() {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
+  localStorage.removeItem('location')
   return { type: UNAUTH_USER };
 };
 
-export function signupUser(firstName, lastName, email, password, address, file) {
+export function signupUser(firstName, lastName, email, password, address, locObj, file) {
   console.log('acton',file)
   return function(dispatch) {
     console.log('actondispatch',file)
-    axios.post('/signup', { email, password, firstName, lastName, address, file })
+    axios.post('/signup', { email, password, firstName, lastName, address, locObj, file })
     .then(response =>{
       dispatch({ type: AUTH_USER, payload: firstName + ' ' + lastName});
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', response.data.firstName + ' ' + response.data.lastName);
+      localStorage.setItem('user', firstName + ' ' + lastName);
+      localStorage.setItem('location', JSON.stringify(locObj))
       browserHistory.push('/');
     })
     .catch(error => dispatch(authError(error.response.data.error)));
