@@ -14,6 +14,11 @@ class SearchLocationBar extends React.Component {
       results: []
     };
   }
+  componentWillMount() {
+    this.setState({
+      location: this.props.defaultLocation.formatted_address || ''
+    });
+  }
 
   onInputChange(event) {
     this.setState({
@@ -23,12 +28,13 @@ class SearchLocationBar extends React.Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    console.log(this.state.location)
     if (this.props.searchTerms.type === 'restaurants') {
       browserHistory.push(`/search/restaurants?q=${ this.props.searchTerms.query }&location=${ this.state.location }`)
     } else if (this.props.searchTerms.type === 'events') {
       browserHistory.push(`/search/events?q=${ this.props.searchTerms.query }&location=${ this.state.location }`)
     } else if (this.props.searchTerms.type === 'tasks') {
+      browserHistory.push(`/search/tasks?q=${ this.props.searchTerms.query }&location=${ this.state.location }`)
+    } else if (this.props.searchTerms.type === 'skilled tasker') {
       browserHistory.push(`/search/tasks?q=${ this.props.searchTerms.query }&location=${ this.state.location }`)
     }
 
