@@ -16,7 +16,7 @@ class Signup extends React.Component {
       password: '',
       address: '',
       locObj: {},
-      file: {}
+      file: ''
     }
   }
 
@@ -72,7 +72,7 @@ class Signup extends React.Component {
           file: srcData
         })
       }.bind(this)
-      // this reads the file (blob) as a base64 string, once read it triggers the onload method 
+      // this reads the file (blob) as a base64 string, once read it triggers the onload method
       fileReader.readAsDataURL(fileToLoad);
     }
   }
@@ -117,7 +117,7 @@ class Signup extends React.Component {
               <input
                 type="file"
                 id="inputFileToLoad"
-                style={{ 'borderRadius': '5px', 'display': 'block', 'width': '100%', 'border': '1px solid #ddd', 'outline': 'none', 'padding': '7px', 'margin': '0 auto' }} 
+                style={{ 'borderRadius': '5px', 'display': 'block', 'width': '100%', 'border': '1px solid #ddd', 'outline': 'none', 'padding': '7px', 'margin': '0 auto' }}
                 placeholder="Upload image.."
                 onChange={ this.onFileChange.bind(this) }
               />
