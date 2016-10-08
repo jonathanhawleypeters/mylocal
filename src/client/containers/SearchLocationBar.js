@@ -10,23 +10,32 @@ class SearchLocationBar extends React.Component {
     super(props);
     this.state = {
       location: '',
+      geometry: '',
       zip: '',
       results: []
     };
   }
   componentWillMount() {
     this.setState({
-      location: this.props.defaultLocation.formatted_address || ''
+      location: this.props.defaultLocation.formatted_address || '',
+      geometry: this.props.defaultLocation.geometry || ''
     });
   }
 
   onInputChange(event) {
     this.setState({
-      location: event.formatted_address || event.target.value
+      location: event.formatted_address || event.target.value,
+      geometry: event.geometry || ''
     });
   }
 
   onFormSubmit(event) {
+
+    if(this.state.geometry.location !== undefined){
+      localStorage.setItem('longitude', this.state.geometry.location.lng())
+      localStorage.setItem('latitude', this.state.geometry.location.lat())
+    }
+
     event.preventDefault();
     if (this.props.searchTerms.type === 'restaurants') {
       browserHistory.push(`/search/restaurants?q=${ this.props.searchTerms.query }&location=${ this.state.location }`)

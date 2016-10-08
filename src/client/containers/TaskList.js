@@ -12,7 +12,9 @@ class TaskList extends Component {
     this.searchChange = this.searchChange.bind(this);
   }
   componentWillMount() {
-    this.props.getTasks();
+    var longitude = localStorage.getItem('longitude')
+    var latitude = localStorage.getItem('latitude')
+    this.props.getTasks(this.props.location.query.q, [longitude, latitude]);
   }
 
   searchChange(e) {
