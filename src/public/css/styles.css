@@ -189,6 +189,7 @@ div.pac-container.pac-logo::after {
   border-radius: 10px;
 }
 
+.favorite,
 .locationPointer,
 .star-rating {
   font-size: 40px !important;
@@ -314,4 +315,9 @@ label {
 
 td {
   padding-right: 1em;
+}
+
+.favorite:hover,
+.favorite-on {
+  color: #f77;
 }
