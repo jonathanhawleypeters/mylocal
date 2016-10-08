@@ -21,10 +21,10 @@ export function signinUser({ email, password }) {
     axios.post('/signin', { email, password })
     .then(response => {
       dispatch({ type: AUTH_USER, payload: response.data.firstName + ' ' + response.data.lastName });
-      browserHistory.push('/');
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', response.data.firstName + ' ' + response.data.lastName);
       localStorage.setItem('location', JSON.stringify(response.data.location))
+      browserHistory.push('/');
     })
     .catch(() => {
       dispatch(authError('Wrong login'));

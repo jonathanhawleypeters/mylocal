@@ -32,12 +32,12 @@ export default class AddTask extends Component {
 
   render(){
     return (
-      <li className="nav-item">
-        <button className="btn-add-task" onClick={this.openModal}>Add Task</button>
+      <span>
+        <a className="dropdown-item" onClick={this.openModal}>Add Task</a>
         <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeM2000} 
+          isOpen={ this.state.modalIsOpen }
+          onAfterOpen={ this.afterOpenModal }
+          onRequestClose={ this.closeM2000 }
           style={{
             content: {
               top: "100px",
@@ -47,7 +47,7 @@ export default class AddTask extends Component {
           <h2 style={{color: '#00a4d3'}}>Add Task</h2>
           {this.state.modalIsOpen ? <TaskForm close={this.closeModal} /> : <br />}
         </Modal>
-      </li>
+      </span>
     )
   }
 }
