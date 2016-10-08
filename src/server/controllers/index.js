@@ -14,7 +14,6 @@ function tokenForUser(user) {
 }
 // Returns a token, if it gets here then already authenticated by passport middleware
 exports.signin = function(req, res) {
-  console.log(req.user);
   res.send({
     token: tokenForUser(req.user),
     firstName: req.user.firstName,
@@ -25,13 +24,13 @@ exports.signin = function(req, res) {
 };
 
 exports.signup = function(req, res) {
-  console.log('file is ', req.files, req.body.file, req.body)
   var email = req.body.email;
   var password = req.body.password;
   var firstName = req.body.firstName;
   var lastName = req.body.lastName;
   var address = req.body.address;
   var locObj = req.body.locObj;
+  var image = req.body.file;
   if (!email || !password) {
     return res.status(422).send({ error: 'You must submit email and password'});
   }
@@ -47,6 +46,7 @@ exports.signup = function(req, res) {
       lastName: lastName,
       address: address,
       location: locObj,
+      image: image
     });
     user.save(function(err) {
       if (err) return next(err);
@@ -54,6 +54,15 @@ exports.signup = function(req, res) {
     });
   });
 };
+
+exports.fetchUser = function(req, res) {
+  User.findOne({ email: req.body.email }, function(err, user) {
+    if (err) res.send(err);
+    if (user) {
+      res.send(user);
+    }
+  });
+}
 
 // For yelp search
 var Yelp = require('yelp');
