@@ -2,7 +2,6 @@
 var User = require('../db/user');
 var Task = require('../db/task');
 var Service = require('../db/service');
-//var fs = require('fs')
 
 // For authentication
 const jwt = require('jwt-simple');
@@ -93,6 +92,12 @@ exports.fetchRestaurant = function(req, res) {
 };
 
 exports.addTask = function(req, res) {
+  let coordinates = [];
+
+  if(req.body.location.geometry){
+    coordinates[0] = req.body.location.geometry.location.lng
+    coordinates[1] = req.body.location.geometry.location.lat
+  }
 
   const taskObj = {
     owner: req.user.email,
@@ -106,6 +111,10 @@ exports.addTask = function(req, res) {
     image: req.body.image,
     assignedTo: '',
     completed: false,
+    coordinates: {
+      type: "Point",
+      coordinates: coordinates
+    }
   };
   var task = new Task(taskObj);
   task.save(function(err, success) {
@@ -116,8 +125,18 @@ exports.addTask = function(req, res) {
 };
 
 exports.getTask = function(req, res) {
-  console.log()
-  Task.find({}, function(err, tasks){
+  let query = {
+    coordinates : {
+      $near : {
+        $geometry: {
+          type: "point",
+          coordinates: [parseFloat(req.query.longitude),parseFloat(req.query.latitude)]
+        },
+        $maxDistance: 160000
+      }
+    }
+  }
+  Task.find(query, function(err, tasks){
     if(err){
       console.error(err);
     }

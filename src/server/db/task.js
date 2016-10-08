@@ -14,9 +14,12 @@ var taskSchema = new Schema({
   category: String,
   image: '',
   assignedTo: String,
-  completed: Boolean
+  completed: Boolean,
+  coordinates: {
+    index: '2dsphere',
+    type: {}
+  }
 });
-
 
 // model class
 module.exports = mongoose.model('task', taskSchema);

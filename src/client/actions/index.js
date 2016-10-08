@@ -1,5 +1,6 @@
 import axios                                  from 'axios';
 import { browserHistory }                     from 'react-router';
+import helpers                                from './action_helpers';
 import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from '../constants';
 import { SEARCH_TERMS }                       from '../constants';
 import { EVENTBRITE_RESULTS }                 from '../constants';
@@ -147,11 +148,15 @@ export function addTask({ title, description, category, hours, volunteer, dollar
   };
 }
 
-export function getTasks(query) {
+export function getTasks(query, coordinates) {
   return function(dispatch) {
-    axios.get('/api/getTasks')
+    axios.get("/api/getTasks", {
+      params: {
+        longitude: coordinates[0],
+        latitude: coordinates[1]
+      }
+    })
     .then(response =>{
-      console.log(response.data);
       dispatch({ type: GET_TASKS, payload: response.data.reverse() });
     })
     .catch(error => console.log(error));
