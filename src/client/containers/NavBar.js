@@ -16,15 +16,20 @@ import AddTask              from '../components/AddTask';
         </li>
       ];
     } else {
-      return [
-        <li className="nav-item" key={ 1 }>
-          <Link to="/" className="nav-item nav-link active">{ this.props.auth.name }</Link>
-        </li>,
-        <AddTask key={ 3 } />,
-        <li className="nav-item" key= { 2 } >
-          <Link to="/signout" className="nav-item nav-link active">Sign Out</Link>
-        </li>,
-      ];
+      return (
+        <li className="nav-item btn-group">
+          <a className="dropdown-toggle nav-link" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            { this.props.auth.name }
+          </a>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <a className="dropdown-item" href="#">My Profile</a>
+            <a className="dropdown-item" href="#">My Favorites</a>
+            <AddTask />
+            <div class="dropdown-divider"></div>
+            <Link to="/signout" className="dropdown-item">Sign Out</Link>
+          </div>
+        </li>
+      );
     }
   }
 
