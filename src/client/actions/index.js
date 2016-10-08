@@ -7,6 +7,9 @@ import { YELP_RESULTS }                       from '../constants';
 import { RESTAURANT }                         from '../constants';
 import { ADD_TASK_TOP, GET_TASKS }            from '../constants';
 import { ADD_SERVICE_TOP, GET_SERVICES }      from '../constants';
+import { FETCH_USER }                         from '../constants';
+
+
 
 // action submits email, pw to the server
 // if success, update state of app to authenticated
@@ -44,7 +47,6 @@ export function signoutUser() {
 };
 
 export function signupUser(firstName, lastName, email, password, address, locObj, file) {
-  console.log('acton',file)
   return function(dispatch) {
     console.log('actondispatch',file)
     axios.post('/signup', { email, password, firstName, lastName, address, locObj, file })
@@ -173,7 +175,7 @@ export function addService({ title, description, category, volunteer, rate }, lo
       location
     };
     axios.post('/api/addService', service, header)
-    .then(response =>{
+    .then(response => {
       console.log("inside actions: ", response.data);
       dispatch({ type: ADD_SERVICE_TOP, payload: response.data.service });
     })
@@ -184,7 +186,7 @@ export function addService({ title, description, category, volunteer, rate }, lo
 export function getServices(query) {
   return function(dispatch) {
     axios.get('/api/getServices')
-    .then(response =>{
+    .then(response => {
       console.log(response.data);
       dispatch({ type: GET_SERVICES, payload: response.data.reverse() });
     })
@@ -192,6 +194,15 @@ export function getServices(query) {
   };
 }
 
+export function fetchUser(email) {
+  return function(dispatch) {
+    axios.post('/api/fetchUser', { email })
+      .then(function(response) {
+        dispatch({ type: FETCH_USER, payload: response.data });
+      })
+      .catch(error => console.log(error));
+  }
+}
 
 
 

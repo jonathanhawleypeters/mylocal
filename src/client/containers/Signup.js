@@ -51,7 +51,6 @@ class Signup extends React.Component {
   }
 
   onLocationChange(locObj) {
-    console.log('location change', locObj)
     this.setState({
       address: locObj.formatted_address,
       locObj: locObj
@@ -59,15 +58,26 @@ class Signup extends React.Component {
   }
 
   onFileChange(event) {
-    console.log(event.target.files[0])
-    this.setState({
-      file: event.target.files[0]
-    })
-    console.log(event.target.files[0])
+    // array of all files uploaded
+    var filesSelected = document.getElementById("inputFileToLoad").files;
+    if (filesSelected.length) {
+      var fileToLoad = filesSelected[0];
+      // JS provides this class
+      var fileReader = new FileReader();
+      fileReader.onload = function(fileLoadedEvent) {
+        console.log(fileLoadedEvent)
+        // we take the result string from the event as below
+        var srcData = fileLoadedEvent.target.result;
+        this.setState({
+          file: srcData
+        })
+      }.bind(this)
+      // this reads the file (blob) as a base64 string, once read it triggers the onload method 
+      fileReader.readAsDataURL(fileToLoad);
+    }
   }
 
   onFormSubmit(event) {
-     console.log('state is ', this.state.file)
     event.preventDefault();
     this.props.signupUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.address, this.state.locObj, this.state.file);
   }
@@ -106,7 +116,7 @@ class Signup extends React.Component {
             <div className="form-group">
               <input
                 type="file"
-                name="userImage"
+                id="inputFileToLoad"
                 style={{ 'borderRadius': '5px', 'display': 'block', 'width': '100%', 'border': '1px solid #ddd', 'outline': 'none', 'padding': '7px', 'margin': '0 auto' }} 
                 placeholder="Upload image.."
                 onChange={ this.onFileChange.bind(this) }

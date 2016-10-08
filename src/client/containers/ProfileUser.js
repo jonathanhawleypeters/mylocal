@@ -1,6 +1,8 @@
  import React from 'react';
+ import { connect } from 'react-redux'; 
+ import { fetchUser } from '../actions'
 
-export default class UserProfile extends React.Component {
+ class UserProfile extends React.Component {
   componentDidMount() {
     $('.long-review').hide();
 
@@ -15,11 +17,15 @@ export default class UserProfile extends React.Component {
     })
   }
 
+  componentWillMount() {
+    this.props.fetchUser('yasser.mahmud@gmail.com')
+  }  
+
   render() {
     return (
       <div>
         <div className="profile-bg">
-          <img src="/img/user.png" className="profile-img" alt="" />
+          <img src={ this.props.user.image } className="profile-img" alt="" />
           <div style={{ 'marginTop': '40px' }}></div>
           <h2>Yasser Mahmud</h2>
           <div style={{ 'marginTop': '40px' }}></div>
@@ -112,7 +118,11 @@ export default class UserProfile extends React.Component {
   }
 }
 
+var mapStateToProps = function({ user }) {
+  return { user };
+};
 
+export default connect(mapStateToProps, { fetchUser })(UserProfile);
 
 //         <div style={{ 'marginTop': '40px' }}></div>
 // <div className="profile-panel">

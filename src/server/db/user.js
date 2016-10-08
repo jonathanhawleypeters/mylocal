@@ -12,7 +12,8 @@ var userSchema = new Schema({
   firstName: String,
   lastName: String,
   address: String,
-  location: {}
+  location: {},
+  image: String
 });
 
 // mongoose middleware before saving user, to encrypt password

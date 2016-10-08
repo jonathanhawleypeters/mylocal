@@ -17,5 +17,4 @@ src/public/dist/
 mylocal.pem
 
 .tmp
-
-
+coverage
