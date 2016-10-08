@@ -18,7 +18,7 @@ import AddTask              from '../components/AddTask';
     } else {
       return (
         <li className="nav-item btn-group">
-          <a className="dropdown-toggle nav-link" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a className="dropdown-toggle nav-link nav-item active" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
             { this.props.auth.name }
           </a>
           <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
