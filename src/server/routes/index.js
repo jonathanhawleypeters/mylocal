@@ -42,6 +42,9 @@ router.get('/api/getTasks', handler.getTask);
 
 router.get('/api/getServices', handler.getService);
 
+// save a favorite to favorites list
+router.post('/api/saveFavorite', requireAuth, handler.saveFavorite);
+
 //catchall
 router.get('/*', function (req, res) {
   res.sendFile('index.html', { root: __dirname + '/../../public/' });

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios                from 'axios';
 
 export default class ResultsYelpItem extends Component {
   constructor(props) {
@@ -9,9 +10,15 @@ export default class ResultsYelpItem extends Component {
   }
 
   toggleHeart() {
+    // setState does not change the value quick enough so creating another variable to use for sending via axios
+    var btnFavoriteToggle = !this.state.btnFavorite;
     this.setState({
-      btnFavorite: !this.state.btnFavorite
-    })
+      btnFavorite: btnFavoriteToggle
+    });
+    if (localStorage.getItem('token')) {
+      const header = { headers: { authorization: localStorage.getItem('token') } };
+      axios.post('/api/saveFavorite', { type: 'event', value: this.props.restaurant, action: btnFavoriteToggle }, header);
+    }
   }
 
   render() {
@@ -39,7 +46,12 @@ export default class ResultsYelpItem extends Component {
             <p className="desc">{ this.props.restaurant.snippet_text }</p>
           </div>
           <div className="col-md-1 text-xs-right">
-            <i className={ this.state.btnFavorite ?  'material-icons favorite favorite-on' : 'material-icons favorite'} onClick={ this.toggleHeart.bind(this) }>favorite</i>
+            <a href="#">
+              <span title="Login and add to favorites">
+                <i className={ this.state.btnFavorite ?  'material-icons favorite favorite-on' : 'material-icons favorite'} onClick={ this.toggleHeart.bind(this) }>favorite
+                </i>
+              </span>
+            </a>
           </div>
         </div>
       </div>

@@ -8,7 +8,6 @@ import ResultsYelp       from './containers/ResultsYelp';
 import ResultsEventbrite from './containers/ResultsEventbrite';
 import Signout           from './containers/Signout';
 import Signup            from './containers/Signup';
-import Profile           from './containers/Profile';
 import TaskList          from './containers/TaskList';
 import ProfileUser       from './containers/ProfileUser';
 import ServiceList       from './containers/ServiceList';

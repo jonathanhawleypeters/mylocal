@@ -31,10 +31,10 @@ class SearchLocationBar extends React.Component {
 
   onFormSubmit(event) {
 
-    if(this.state.geometry.location !== undefined){
-      localStorage.setItem('longitude', this.state.geometry.location.lng())
-      localStorage.setItem('latitude', this.state.geometry.location.lat())
-    }
+    // if(this.state.geometry.location !== undefined){
+    //   localStorage.setItem('longitude', this.state.geometry.location.lng())
+    //   localStorage.setItem('latitude', this.state.geometry.location.lat())
+    // }
 
     event.preventDefault();
     if (this.props.searchTerms.type === 'restaurants') {

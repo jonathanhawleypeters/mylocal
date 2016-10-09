@@ -177,9 +177,28 @@ exports.getService = function(req, res) {
   });
 };
 
-
-
-
+exports.saveFavorite = function(req, res, next) {
+  var email = req.user.email;
+  var type = req.body.type;
+  var value = req.body.value;
+  var add = req.body.action;
+  User.findOne({ email: email }, function(err, existingUser) {
+    if (err) return next(err);
+    if (existingUser) {
+      if (add) {
+        var item = { type: type, value: value};
+        existingUser.favorites.push(item);
+        existingUser.save();
+      }
+      else {
+        existingUser.favorites = existingUser.favorites.filter(function(favorite) {
+          return !(favorite.type === type && favorite.value.id === value.id);
+        });
+        existingUser.save();
+      }
+    }
+  });
+};
 
 
 
