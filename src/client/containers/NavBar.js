@@ -25,7 +25,7 @@ import AddTask              from '../components/AddTask';
             <a className="dropdown-item" href="#">My Profile</a>
             <a className="dropdown-item" href="#">My Favorites</a>
             <AddTask />
-            <div class="dropdown-divider"></div>
+            <div className="dropdown-divider"></div>
             <Link to="/signout" className="dropdown-item">Sign Out</Link>
           </div>
         </li>
