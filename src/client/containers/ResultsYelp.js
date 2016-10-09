@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ResultsYelpItem      from '../components/ResultsYelpItem';
+import ResultsYelpItem      from './ResultsYelpItem';
 import { connect }          from 'react-redux';
 import { browserHistory }   from 'react-router';
 import { searchYelp }       from '../actions';
