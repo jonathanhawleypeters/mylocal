@@ -62,6 +62,25 @@ export function signupUser(firstName, lastName, email, password, address, locObj
   };
 };
 
+export function changePassword({oldPassword, newPassword}){
+  const header = {
+      headers: {
+        authorization: localStorage.getItem('token')
+      }
+  };
+
+  return function(dispatch) {
+    axios.post('/changepassword', { oldPassword, newPassword }, header)
+    .then(response => {
+      dispatch({ type: AUTH_USER, payload: 'Your password has been changed!' });
+      browserHistory.push('/');
+    })
+    .catch(() => {
+      dispatch(authError('Error, please try again'));
+    });
+  };
+}
+
 export function submitQueryAndType (query, type) {
   return {
     type: SEARCH_TERMS,

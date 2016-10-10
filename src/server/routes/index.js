@@ -18,6 +18,9 @@ router.post('/signup', handler.signup);
 // signin route
 router.post('/signin', requireSignin, handler.signin);
 
+//change password route
+router.post('/changepassword', requireAuth, handler.changepassword);
+
 // call from client for add task
 router.post('/api/addTask', requireAuth, handler.addTask);
 

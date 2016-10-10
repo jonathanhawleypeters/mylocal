@@ -14,6 +14,9 @@ import ServiceList       from './containers/ServiceList';
 import VolunteerList     from './containers/VolunteerList';
 import ResultsFavorites  from './containers/ResultsFavorites';
 import AccountSettings   from './components/AccountSettings';
+import ChangedPassword   from './containers/ChangePassword';
+
+
 
 export default (
   <Router path="/" component = { App } >
@@ -21,6 +24,7 @@ export default (
       <Route path="/signin" component = { Signin }/>
       <Route path="/signout" component = { Signout } />
       <Route path="/signup" component = { Signup } />
+      <Route path="/changepassword" component = { ChangedPassword } />
       <Route path="/search" component = { SearchLocation } />
       <Route path="/search/restaurants" component = { ResultsYelp } />
       <Route path="/search/events" component = { ResultsEventbrite } />
