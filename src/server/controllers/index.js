@@ -132,7 +132,7 @@ exports.getTask = function(req, res) {
           type: "point",
           coordinates: [parseFloat(req.query.longitude),parseFloat(req.query.latitude)]
         },
-        $maxDistance: 160000
+        $maxDistance: 169000
       }
     }
   }

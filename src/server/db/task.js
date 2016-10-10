@@ -15,10 +15,7 @@ var taskSchema = new Schema({
   image: '',
   assignedTo: String,
   completed: Boolean,
-  coordinates: {
-    index: '2dsphere',
-    type: {}
-  }
+  coordinates: { type: {}, index: '2dsphere' }
 });
 
 // model class

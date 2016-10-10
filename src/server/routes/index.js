@@ -38,8 +38,10 @@ router.get('/secured', requireAuth, function(req, res) {
 // get a single restaurant selected by user
 router.get('/fetchRestaurant/:id', handler.fetchRestaurant);
 
+//get tasks near user (there's a query string with longitude and latitude)
 router.get('/api/getTasks', handler.getTask);
 
+//get servives
 router.get('/api/getServices', handler.getService);
 
 router.get('/api/getVolunteers', handler.getVolunteer);

@@ -56,7 +56,7 @@ class SearchLocationBar extends React.Component {
       <form onSubmit={ this.onFormSubmit.bind(this) }>
         <Autocomplete
           className="inputBox"
-          style={{ 'width': '30%', 'textAlign': 'center' }}
+          style={{ 'width': '500px', 'textAlign': 'center' }}
           value={ this.state.location }
           onChange={ (this.onInputChange).bind(this) }
           onPlaceSelected={ (place) => this.onInputChange(place) }
