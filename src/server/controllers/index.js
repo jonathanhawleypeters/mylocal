@@ -189,6 +189,21 @@ exports.doTask = function(req, res) {
   })
 }
 
+exports.addReview = function(req, res) {
+  User.findOne({ email: req.body.servicePerson }, function(err, user) {
+    if(user.reviews === null) user.reviews = [];
+    user.reviews.push({
+      reviewerEmail: req.user.email,
+      reviewerName: req.user.firstName + ' ' + req.user.lastName,
+      title: req.body.title,
+      review: req.body.review
+    });
+    user.save(function(err, user) {
+      res.send(user)
+    });
+  })
+}
+
 
 exports.addService = function(req, res) {
 
