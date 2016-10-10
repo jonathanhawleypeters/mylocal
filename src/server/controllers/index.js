@@ -56,8 +56,6 @@ exports.signup = function(req, res, next) {
 };
 
 exports.changepassword = function(req, res, done) {
-  console.log(req.user);
- console.log(req.body.newPassword, req.body.oldPassword);
   var user = req.user;
   var oldPassword = req.body.oldPassword;
   var newPassword = req.body.newPassword;
@@ -65,7 +63,6 @@ exports.changepassword = function(req, res, done) {
     user.comparePassword(oldPassword, function(err, isMatch) {
       if (err) return done(err);
       if (!isMatch) return done(null, false);
-      // return done(null, user);
       user.password = newPassword;
       user.save(function(err) {
         if (err) return next(err);
