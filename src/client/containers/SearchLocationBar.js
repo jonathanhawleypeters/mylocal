@@ -10,7 +10,8 @@ class SearchLocationBar extends React.Component {
     super(props);
     this.state = {
       location: '',
-      geometry: '',
+      userGeometry: '',
+      queryGeometry: '',
       zip: '',
       results: []
     };
@@ -18,22 +19,26 @@ class SearchLocationBar extends React.Component {
   componentWillMount() {
     this.setState({
       location: this.props.defaultLocation.formatted_address || '',
-      geometry: this.props.defaultLocation.geometry || ''
+      userGeometry: this.props.defaultLocation.geometry || '',
+      queryGeometry: ''
     });
   }
 
   onInputChange(event) {
     this.setState({
       location: event.formatted_address || event.target.value,
-      geometry: event.geometry || ''
+      queryGeometry: event.geometry || ''
     });
   }
 
   onFormSubmit(event) {
 
-    if(this.state.geometry.location !== undefined){
-      localStorage.setItem('longitude', this.state.geometry.location.lng())
-      localStorage.setItem('latitude', this.state.geometry.location.lat())
+    if(this.state.queryGeometry !== ''){
+      localStorage.setItem('longitude', this.state.queryGeometry.location.lng())
+      localStorage.setItem('latitude', this.state.queryGeometry.location.lat())
+    } else {
+      localStorage.setItem('longitude', this.state.userGeometry.location.lng)
+      localStorage.setItem('latitude', this.state.userGeometry.location.lat)
     }
 
     event.preventDefault();
@@ -56,7 +61,7 @@ class SearchLocationBar extends React.Component {
       <form onSubmit={ this.onFormSubmit.bind(this) }>
         <Autocomplete
           className="inputBox"
-          style={{ 'width': '30%', 'textAlign': 'center' }}
+          style={{ 'width': '500px', 'textAlign': 'center' }}
           value={ this.state.location }
           onChange={ (this.onInputChange).bind(this) }
           onPlaceSelected={ (place) => this.onInputChange(place) }

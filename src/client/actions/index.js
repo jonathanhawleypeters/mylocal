@@ -11,8 +11,6 @@ import { ADD_SERVICE_TOP, GET_SERVICES }      from '../constants';
 import { FETCH_USER }                         from '../constants';
 import { GET_VOLUNTEERS }                     from '../constants';
 
-
-
 // action submits email, pw to the server
 // if success, update state of app to authenticated
 // save jwt token
@@ -164,6 +162,20 @@ export function getTasks(query, coordinates) {
   };
 }
 
+export function doTask(taskID, coordinates) {
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('token')
+    }
+  };
+  return function(dispatch){
+    axios.post('/api/doTask', {taskId: taskID, longitude : coordinates[0], latitude: coordinates[1]}, header)
+    .then(response =>{
+      dispatch({type: GET_TASKS, payload: response.data.reverse() })
+    })
+    .catch(error => console.log(error));
+  }
+}
 
 export function addService({ title, description, category, volunteer, rate }, location) {
   return function(dispatch) {

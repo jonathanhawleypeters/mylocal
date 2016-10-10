@@ -24,6 +24,9 @@ router.post('/api/addTask', requireAuth, handler.addTask);
 //call from client for add service
 router.post('/api/addService', requireAuth, handler.addService);
 
+// commit to taking on a task
+router.post('/api/doTask', requireAuth, handler.doTask);
+
 //call from client to fetch user
 router.post('/api/fetchUser', handler.fetchUser);
 
@@ -38,8 +41,10 @@ router.get('/secured', requireAuth, function(req, res) {
 // get a single restaurant selected by user
 router.get('/fetchRestaurant/:id', handler.fetchRestaurant);
 
+//get tasks near user (there's a query string with longitude and latitude)
 router.get('/api/getTasks', handler.getTask);
 
+//get servives
 router.get('/api/getServices', handler.getService);
 
 router.get('/api/getVolunteers', handler.getVolunteer);

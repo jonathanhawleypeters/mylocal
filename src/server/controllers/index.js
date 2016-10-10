@@ -1,7 +1,8 @@
 // require the db models
-var User = require('../db/user');
-var Task = require('../db/task');
-var Service = require('../db/service');
+const User = require('../db/user');
+const Task = require('../db/task');
+const Service = require('../db/service');
+
 
 // For authentication
 const jwt = require('jwt-simple');
@@ -125,24 +126,69 @@ exports.addTask = function(req, res) {
 };
 
 exports.getTask = function(req, res) {
-  let query = {
-    coordinates : {
-      $near : {
-        $geometry: {
-          type: "point",
-          coordinates: [parseFloat(req.query.longitude),parseFloat(req.query.latitude)]
-        },
-        $maxDistance: 160000
-      }
-    }
-  }
-  Task.find(query, function(err, tasks){
+  Task.aggregate([{
+    $geoNear : {
+      near: {
+        type: "point",
+        coordinates: [parseFloat(req.query.longitude),parseFloat(req.query.latitude)]
+      },
+      maxDistance: 169000,
+      distanceField: "distance",
+      spherical: true
+    }},
+    {$lookup : {
+      from: "users",
+      localField: "assignedTo",
+      foreignField: "email",
+      as: "assignedUser"
+    }}
+  ], function(err, tasks){
     if(err){
       console.error(err);
     }
     res.json(tasks);
   })
 }
+
+exports.doTask = function(req, res) {
+  Task.findOne({ _id: req.body.taskId}, function(err, task){
+    if(task.assignedTo === ''){
+      task.assignedTo = req.user.email;
+    }
+    //whether or not the user gets the task, return an updated task list
+    //saving an unchanged file may throw an error, haven't tested yet
+    task.save(function(err, task) {
+      if(err){
+        console.log(err);
+      }
+      Task.aggregate([{
+      $geoNear : {
+        near: {
+          type: "point",
+          coordinates: [parseFloat(req.body.longitude),parseFloat(req.body.latitude)]
+        },
+        maxDistance: 169000,
+        distanceField: "distance",
+        spherical: true
+      }},
+      {
+        $lookup : {
+          from: "users",
+          localField: "assignedTo",
+          foreignField: "email",
+          as: "assignedUser"
+        }}
+      ], 
+      function(err, tasks){
+        if(err){
+          console.error(err);
+        }
+        res.json(tasks);
+      })
+    });
+  })
+}
+
 
 exports.addService = function(req, res) {
 
