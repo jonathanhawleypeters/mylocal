@@ -21,6 +21,11 @@ var userSchema = new Schema({
 // mongoose middleware before saving user, to encrypt password
 userSchema.pre('save', function(next) {
   const user = this;
+
+  //check if password is modified, else no action
+  if (!user.isModified('password')) {
+       return next();
+  }
   // generate a salt of work_factor 10
   bcrypt.genSalt(10, function(err, salt) {
     if (err) return next(err);

@@ -55,6 +55,25 @@ exports.signup = function(req, res, next) {
   });
 };
 
+exports.changepassword = function(req, res, done) {
+  console.log(req.user);
+ console.log(req.body.newPassword, req.body.oldPassword);
+  var user = req.user;
+  var oldPassword = req.body.oldPassword;
+  var newPassword = req.body.newPassword;
+
+    user.comparePassword(oldPassword, function(err, isMatch) {
+      if (err) return done(err);
+      if (!isMatch) return done(null, false);
+      // return done(null, user);
+      user.password = newPassword;
+      user.save(function(err) {
+        if (err) return next(err);
+        res.json({success: 'password has been changed' });
+      });
+    });
+};
+
 exports.fetchUser = function(req, res) {
   User.findOne({ email: req.body.email }, function(err, user) {
     if (err) res.send(err);
