@@ -30,6 +30,9 @@ router.post('/api/doTask', requireAuth, handler.doTask);
 //call from client to fetch user
 router.post('/api/fetchUser', handler.fetchUser);
 
+//review task
+router.post('/api/addReview', requireAuth, handler.addReview);
+
 // call from client for yelp search
 router.get('/api/search/restaurants', handler.searchYelp);
 
