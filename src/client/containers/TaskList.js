@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
-import { getTasks }         from '../actions';
+import { getTasks } from '../actions';
 
 class TaskList extends Component {
 
@@ -10,6 +10,7 @@ class TaskList extends Component {
       search: ''
     }
     this.searchChange = this.searchChange.bind(this);
+    this.handleDoTask = this.handleDoTask.bind(this);
   }
   componentWillMount() {
     var longitude = localStorage.getItem('longitude')
@@ -24,7 +25,15 @@ class TaskList extends Component {
     })
   }
 
+  handleDoTask(e) {
+    console.log(e.target.value) //task id
+    var longitude = localStorage.getItem('longitude')
+    var latitude = localStorage.getItem('latitude')
+    this.props.doTask(e.target.value, [longitude, latitude])
+  }
+
   render(){
+    const DOTASK = this.handleDoTask;
     return (
       <div>
         <div style={{ marginTop: "100px" }} ></div>
@@ -36,7 +45,6 @@ class TaskList extends Component {
           return taskData.title.toUpperCase().includes(this.state.search.toUpperCase()) || taskData.description.toUpperCase().includes(this.state.search.toUpperCase()) ||
             taskData.category.toUpperCase().includes(this.state.search.toUpperCase())
         }).map(function(taskData) {
-          console.log(taskData)
           return (
             <div className="result" key={taskData._id}>
               <div className="row">
@@ -58,9 +66,12 @@ class TaskList extends Component {
                 <div className="col-md-3">
                   <h4>Details</h4>
                   <table>
-                    <tr><td>Category: </td><td>{taskData.category}</td></tr>
-                    <tr><td>Status: </td><td>{ taskData.completed ? String.fromCharCode(10004): String.fromCharCode(10008) }</td></tr>
-                    <tr><td>Paid: </td><td>{ taskData.volunteer ? "No" : "Yes" }</td></tr>
+                    <tbody>
+                      <tr><td>Category: </td><td>{taskData.category}</td></tr>
+                      <tr><td>Status: </td><td>{ taskData.completed ? String.fromCharCode(10004): String.fromCharCode(10008) }</td></tr>
+                      <tr><td>Paid: </td><td>{ taskData.volunteer ? "No" : "Yes" }</td></tr>
+                      <tr><td>{taskData.assignedTo?"Assigned to: " + taskData.assignedUser[0].firstName:<button onClick={DOTASK} value={taskData._id}>Do this task</button>}</td></tr>
+                    </tbody>
                   </table>
                 </div>
               </div>

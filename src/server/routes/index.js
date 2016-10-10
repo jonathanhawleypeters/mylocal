@@ -24,6 +24,9 @@ router.post('/api/addTask', requireAuth, handler.addTask);
 //call from client for add service
 router.post('/api/addService', requireAuth, handler.addService);
 
+// commit to taking on a task
+router.post('/api/doTask', requireAuth, handler.doTask);
+
 //call from client to fetch user
 router.post('/api/fetchUser', handler.fetchUser);
 
