@@ -17,7 +17,6 @@ import AccountSettings   from './components/AccountSettings';
 import ChangedPassword   from './containers/ChangePassword';
 import ReviewTasks       from './containers/ReviewTasks';
 
-
 export default (
   <Router path="/" component = { App } >
     <IndexRoute component = { Home } />
@@ -35,6 +34,5 @@ export default (
       <Route path="/favorites" component = { ResultsFavorites } />
       <Route path="/account" component = { AccountSettings } />
       <Route path="/account/tasks" component = { ReviewTasks } />
-
   </Router>
 );

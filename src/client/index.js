@@ -8,7 +8,6 @@ import reducers                         from './reducers';
 import reduxThunk                       from 'redux-thunk';
 import { AUTH_USER }                    from './constants';
 
-// apply any middleware
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 const token = localStorage.getItem('token');
@@ -20,12 +19,9 @@ if(token){
   })
 }
 
-
 ReactDOM.render(
   <Provider store={ store }>
     <Router history={browserHistory} routes={routes}></Router>
   </Provider>
-    , document.getElementById('app')
-  );
-
-// todo : automatically authenticate users
+  , document.getElementById('app')
+);
