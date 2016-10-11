@@ -1,6 +1,18 @@
-import React from 'react';
+import React          from 'react';
+import ChangePassword from '../containers/ChangePassword';
 
 export default class GeneralSettings extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      changeInPassword: false
+    };
+  }
+  applyChanges() {
+    this.setState({
+      changeInPassword: true
+    })
+  }
   render() {
     return (
       <div>
@@ -30,17 +42,9 @@ export default class GeneralSettings extends React.Component {
             </div>
           </div>
           <div className="settings-panel">
-            <h4 className="settings-subtitle">Password</h4>
+            <h4 className="settings-subtitle">Change Password</h4>
             <hr />
-            <div className="password-box">
-              <input type="text" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="Current Password.." />
-            </div>
-            <div className="password-box">
-              <input type="text" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="New Password.." />
-            </div>
-            <div className="password-box">
-              <input type="text" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="Confirm New Password.." />
-            </div>
+            <ChangePassword changeInPassword={ this.state.changeInPassword }/>
           </div>
           <div className="settings-panel">
             <h4 className="settings-subtitle">Description</h4>
@@ -48,7 +52,7 @@ export default class GeneralSettings extends React.Component {
             <textarea style={{ "borderRadius":"5px", "border":"1px solid #ddd", "outline":"none", "width":"250px", "padding":"7px" }} placeholder="Description.." rows="5"></textarea>
           </div>
           <div className="settings-panel">
-            <button className="btn btn-info btn-main-custom">Apply Changes</button>
+            <button onClick={ this.applyChanges.bind(this) } className="btn btn-info btn-main-custom">Apply Changes</button>
           </div>
         </div>
       </div>
