@@ -31,7 +31,7 @@ export default (
       <Route path="/search/services" component = { ServiceList } />
       <Route path="/search/volunteers" component = { VolunteerList } />
       <Route path="/search/tasks" component = { TaskList } />
-      <Route path="/user" component = { ProfileUser } />
+      <Route path="/user/:email" component = { ProfileUser } />
       <Route path="/favorites" component = { ResultsFavorites } />
       <Route path="/account" component = { AccountSettings } />
       <Route path="/account/tasks" component = { ReviewTasks } />

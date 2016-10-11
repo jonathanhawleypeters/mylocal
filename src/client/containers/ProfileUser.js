@@ -6,111 +6,108 @@
  class UserProfile extends React.Component {
 
   componentWillMount() {
-    this.props.fetchUser('eric@shor.com')
+    this.props.fetchUser(this.props.params.email)
   }
 
   render() {
-    return (
-      <div>
-        <div className="profile-bg">
-          <img src={ this.props.user.image } className="profile-img" alt="" />
-          <div style={{ 'marginTop': '40px' }}></div>
-          <h2>{this.props.user.firstName + ' ' + this.props.user.lastName}</h2>
-          <div style={{ 'marginTop': '40px' }}></div>
-          <i className="material-icons star-rating star-on">star</i>
-          <i className="material-icons star-rating star-on">star</i>
-          <i className="material-icons star-rating star-on">star</i>
-          <i className="material-icons star-rating star-on">star</i>
-          <i className="material-icons star-rating">star</i>
-          <div style={{ 'marginTop': '40px' }}></div>
-            <div className="row">
-              <div className="col-md-2 offset-md-2">
-                <div><i className="material-icons profile-icon">location_on</i></div>
-                <p>{ this.props.user.email }</p>
-              </div>
-              <div className="col-md-1 hidden-sm-down" style={{ 'textAlign': 'center' }}>
-                <div className="vr"></div>
-              </div>
-              <div className="col-md-2">
-                <div><i className="material-icons profile-icon">attach_money</i></div>
-                <p>$30/hr</p>
-              </div>
-              <div className="col-md-1 hidden-sm-down" style={{ 'textAlign': 'center' }}>
-                <div className="vr"></div>
-              </div>
-              <div className="col-md-2">
-                <i className="material-icons profile-icon">stars</i>
-              </div>
-            </div>
-        </div>
-
-        <div style={{ 'marginTop': '40px' }}></div>
-
-        <div className="profile-panel">
-          <h3>Description</h3>
-          <hr />
-          <p>{this.props.user.selfDescription}</p>
-        </div>
-
-        <div style={{ 'marginTop': '40px' }}></div>
-
-        <div className="container-fluid profile-panel">
-          <div className="row">
-            <div className="col-md-6">
-              <h3>Completed Jobs</h3>
-              <hr />
+    if (Object.keys(this.props.user).length) {
+      return (
+        <div>
+          <div className="profile-bg">
+            <img src={ this.props.user.image } className="profile-img" alt="" />
+            <div style={{ 'marginTop': '40px' }}></div>
+            <h2>{this.props.user.firstName + ' ' + this.props.user.lastName}</h2>
+            <div style={{ 'marginTop': '40px' }}></div>
+            <i className="material-icons star-rating star-on">star</i>
+            <i className="material-icons star-rating star-on">star</i>
+            <i className="material-icons star-rating star-on">star</i>
+            <i className="material-icons star-rating star-on">star</i>
+            <i className="material-icons star-rating">star</i>
+            <div style={{ 'marginTop': '40px' }}></div>
               <div className="row">
-                <div className="col-lg-2 col-md-3 col-sm-3 col-xs-4">
-                  <img src="http://placehold.it/80x80" alt="" className="img-fluid" />
+                <div className="col-md-4 offset-md-1">
+                  <span title="Rates"><i className="material-icons profile-icon">attach_money</i></span>
+                  <p>$30/hr</p>
                 </div>
-                <div className="col-xl-6 col-lg-10 col-md-9 col-sm-9 col-xs-8">
-                  <h5>Help re-style my website</h5>
-                  <i className="material-icons star-rating star-sm star-on">star</i>
-                  <i className="material-icons star-rating star-sm star-on">star</i>
-                  <i className="material-icons star-rating star-sm star-on">star</i>
-                  <i className="material-icons star-rating star-sm star-on">star</i>
-                  <i className="material-icons star-rating star-sm">star</i>
-                  <div>
-                    <p className="short-review">"He did an awesome Job, I was impressed..."</p>
-                    <p className="long-review">"He did an awesome Job, I was impressed by the design, Will hire again."</p>
-                  </div>
+                <div className="col-md-2 hidden-sm-down" style={{ 'textAlign': 'center' }}>
+                  <div className="vr"></div>
+                </div>
+                <div className="col-md-4">
+                  <span title="Volunter Badges"><i className="material-icons profile-icon">stars</i></span>
                 </div>
               </div>
-            </div>
-            <div className="col-md-6">
-              <h3>Volunteer Work</h3>
-              <hr />
-              <div className="row">
-                <div className="col-lg-2 col-md-3 col-sm-3 col-xs-4">
-                  <img src="http://placehold.it/80x80" alt="" className="img-fluid" />
-                </div>
-                <div className="col-xl-6 col-lg-10 col-md-9 col-sm-9 col-xs-8">
-                  <h5>Clean The Lawn</h5>
-                  <i className="material-icons star-rating star-sm star-on">star</i>
-                  <i className="material-icons star-rating star-sm star-on">star</i>
-                  <i className="material-icons star-rating star-sm star-on">star</i>
-                  <i className="material-icons star-rating star-sm star-on">star</i>
-                  <i className="material-icons star-rating star-sm star-on">star</i>
-                  <div>
-                    <p className="short-review">"I am an old lady. He helped..."</p>
-                    <p className="long-review">"I am an old lady. He helped me clean my lawn. I didn't know that fullstack engineers cleaned lawns"</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <h3>Reviews</h3>
-              <hr />
-              { this.props.user.reviews ? ( this.props.user.reviews.map((review, key) => {
-                return (
-                  <ProfileUserReview review={ review } key={ key } />
-                )
-              }) ) : (<div></div>) }
-            </div>
           </div>
-        </div>   
-      </div>
-    );
+
+          <div style={{ 'marginTop': '40px' }}></div>
+
+          <div className="profile-panel">
+            <h3>Description</h3>
+            <hr />
+            <p>{this.props.user.selfDescription}</p>
+          </div>
+
+          <div style={{ 'marginTop': '40px' }}></div>
+
+          <div className="container-fluid profile-panel">
+            <div className="row">
+              <div className="col-md-6">
+                <h3>Completed Jobs</h3>
+                <hr />
+                <div className="row">
+                  <div className="col-lg-2 col-md-3 col-sm-3 col-xs-4">
+                    <img src="http://placehold.it/80x80" alt="" className="img-fluid" />
+                  </div>
+                  <div className="col-xl-6 col-lg-10 col-md-9 col-sm-9 col-xs-8">
+                    <h5>Help re-style my website</h5>
+                    <i className="material-icons star-rating star-sm star-on">star</i>
+                    <i className="material-icons star-rating star-sm star-on">star</i>
+                    <i className="material-icons star-rating star-sm star-on">star</i>
+                    <i className="material-icons star-rating star-sm star-on">star</i>
+                    <i className="material-icons star-rating star-sm">star</i>
+                    <div>
+                      <p className="short-review">"He did an awesome Job, I was impressed..."</p>
+                      <p className="long-review">"He did an awesome Job, I was impressed by the design, Will hire again."</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <h3>Volunteer Work</h3>
+                <hr />
+                <div className="row">
+                  <div className="col-lg-2 col-md-3 col-sm-3 col-xs-4">
+                    <img src="http://placehold.it/80x80" alt="" className="img-fluid" />
+                  </div>
+                  <div className="col-xl-6 col-lg-10 col-md-9 col-sm-9 col-xs-8">
+                    <h5>Clean The Lawn</h5>
+                    <i className="material-icons star-rating star-sm star-on">star</i>
+                    <i className="material-icons star-rating star-sm star-on">star</i>
+                    <i className="material-icons star-rating star-sm star-on">star</i>
+                    <i className="material-icons star-rating star-sm star-on">star</i>
+                    <i className="material-icons star-rating star-sm star-on">star</i>
+                    <div>
+                      <p className="short-review">"I am an old lady. He helped..."</p>
+                      <p className="long-review">"I am an old lady. He helped me clean my lawn. I didn't know that fullstack engineers cleaned lawns"</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <h3>Reviews</h3>
+                <hr />
+                { this.props.user.reviews ? ( this.props.user.reviews.map((review, key) => {
+                  return (
+                    <ProfileUserReview review={ review } key={ key } />
+                  )
+                }) ) : (<div></div>) }
+              </div>
+            </div>
+          </div>   
+        </div>
+      );
+    } else {
+      return <div style={{ 'marginTop': '120px', 'marginLeft': '20px', 'fontSize': '15px' }}>Loading...</div>
+    }
   }
 }
 

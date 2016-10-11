@@ -21,6 +21,7 @@ class ChangePassword extends Component {
 
   renderAlert(){
     if (this.props.errorMessage){
+      this.props.changeInPassword = false;
       return (
         <div className="alert alert-danger">
           <strong>Oops!</strong> {this.props.errorMessage}
@@ -59,17 +60,17 @@ class ChangePassword extends Component {
         // rolled back to redux 5.33, since 6.05 uses a different format.
       <form>
         <div className="password-box">
-          <input type="text" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="Current Password.." 
+          <input type="password" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="Current Password.." 
             onChange={ this.onOldPasswordChange.bind(this) } 
           />
         </div>
         <div className="password-box">
-          <input type="text" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="New Password.." 
+          <input type="password" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="New Password.." 
             onChange={ this.onNewPasswordChange.bind(this) } 
           />
         </div>
         <div className="password-box">
-          <input type="text" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="Confirm New Password.." 
+          <input type="password" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="Confirm New Password.." 
             onChange={ this.onConfNewPasswordChange.bind(this) } 
           />
         </div>

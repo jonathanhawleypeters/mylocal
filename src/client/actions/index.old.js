@@ -1,17 +1,16 @@
-import axios                                        from 'axios';
-import { browserHistory }                           from 'react-router';
-import helpers                                      from './action_helpers';
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER }       from '../constants';
-import { SEARCH_TERMS }                             from '../constants';
-import { EVENTBRITE_RESULTS }                       from '../constants';
-import { YELP_RESULTS }                             from '../constants';
-import { RESTAURANT }                               from '../constants';
-import { ADD_TASK_TOP, GET_TASKS, GET_USER_TASKS }  from '../constants';
-import { ADD_SERVICE_TOP, GET_SERVICES }            from '../constants';
-import { FETCH_USER }                               from '../constants';
-import { GET_VOLUNTEERS }                           from '../constants';
-import { FAVORITES }                                from '../constants';
-import { LOCAL_USER }                         from '../constants';
+import axios                                  from 'axios';
+import { browserHistory }                     from 'react-router';
+import helpers                                from './action_helpers';
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from '../constants';
+import { SEARCH_TERMS }                       from '../constants';
+import { EVENTBRITE_RESULTS }                 from '../constants';
+import { YELP_RESULTS }                       from '../constants';
+import { RESTAURANT }                         from '../constants';
+import { ADD_TASK_TOP, GET_TASKS }            from '../constants';
+import { ADD_SERVICE_TOP, GET_SERVICES }      from '../constants';
+import { FETCH_USER }                         from '../constants';
+import { GET_VOLUNTEERS }                     from '../constants';
+import { FAVORITES }                          from '../constants';
 
 // action submits email, pw to the server
 // if success, update state of app to authenticated
@@ -73,8 +72,7 @@ export function changePassword({ oldPassword, newPassword }){
   return function(dispatch) {
     axios.post('/changepassword', { oldPassword, newPassword }, header)
     .then(response => {
-      console.log(response.data)
-      dispatch({ type: AUTH_USER, payload: response.data.firstName + ' ' + response.data.lastName });
+      dispatch({ type: AUTH_USER });
       browserHistory.push('/');
     })
     .catch(() => {
@@ -184,22 +182,6 @@ export function getTasks(query, coordinates) {
   };
 }
 
-export function getUserTasks() {
-  const header = {
-    headers: {
-      authorization: localStorage.getItem('token')
-    }
-  };
-  return function(dispatch) {
-    axios.get("/api/getUserTasks", header)
-    .then(response =>{
-      console.log(response.data)
-      dispatch({ type: GET_USER_TASKS, payload: response.data.reverse() });
-    })
-    .catch(error => console.log(error));
-  };
-}
-
 export function doTask(taskID, coordinates) {
   const header = {
     headers: {
@@ -210,21 +192,6 @@ export function doTask(taskID, coordinates) {
     axios.post('/api/doTask', {taskId: taskID, longitude : coordinates[0], latitude: coordinates[1]}, header)
     .then(response =>{
       dispatch({type: GET_TASKS, payload: response.data.reverse() })
-    })
-    .catch(error => console.log(error));
-  }
-}
-
-export function reviewTask(title, review, rating, servicePerson) {
-  const header = {
-    headers: {
-      authorization: localStorage.getItem('token')
-    }
-  };
-  return function(dispatch){
-    axios.post('/api/addReview', {title: title, review: review, rating: rating, servicePerson: servicePerson}, header)
-    .then(response =>{
-      //???
     })
     .catch(error => console.log(error));
   }
@@ -294,17 +261,17 @@ export function getVolunteers(query, coordinates ) {
 export function saveFavorites(token, type, value, action) {
   return function(dispatch) {
     const header = { headers: { authorization: localStorage.getItem('token') } };
-    axios.post('/api/saveFavorite', { type: type, value: value, action: action }, header)
+      axios.post('/api/saveFavorite', { type: type, value: value, action: action }, header)
   }
 }
 
 export function updateFavorites(favorites, type, id) {
   const newFavorites = favorites.filter(function(favorite) {
-    return !(favorite.type === type && favorite.value.id === id);
-  });
+          return !(favorite.type === type && favorite.value.id === id);
+        });
   return {
-    type: FAVORITES,
-    payload: newFavorites
+      type: FAVORITES,
+      payload: newFavorites
   }
 }
 
@@ -316,26 +283,5 @@ export function fetchFavorites(token) {
           dispatch({ type: FAVORITES, payload: response.data });
       })
       .catch(error => console.log(error));
-  }
-}
-
-export function updateUser(token, { newDescription, firstName, lastName, address, locObj, file }) {
-  console.log('location', locObj);
-  return function(dispatch) {
-    const header = { headers: { authorization: token } };
-    axios.post('/api/updateUser', { newDescription, firstName, lastName, address, location: locObj, file }, header)
-      .then(function(response) {
-        browserHistory.push('/signout');
-      })
-  }
-}
-
-export function fetchLocalUser(token) {
-  return function(dispatch) {
-    const header = { headers: { authorization: token } };
-    axios.get('/api/fetchLocalUser', header)
-      .then(function(response) {
-        dispatch({ type: LOCAL_USER, payload: response.data })
-      })
   }
 }

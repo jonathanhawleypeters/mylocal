@@ -66,11 +66,12 @@ exports.changepassword = function(req, res, done) {
       user.password = newPassword;
       user.save(function(err) {
         if (err) return next(err);
-        res.json({firstName: user.firstName, lastName: user.lastName});
+        res.json({success: 'password has been changed' });
       });
     });
 };
 
+// user profile for public viewing
 exports.fetchUser = function(req, res) {
   User.findOne({ email: req.body.email }, function(err, user) {
     if (err) res.send(err);
@@ -109,7 +110,7 @@ exports.fetchRestaurant = function(req, res) {
 };
 
 exports.addTask = function(req, res) {
-  var coordinates = [];
+  let coordinates = [];
 
   if(req.body.location.geometry){
     coordinates[0] = req.body.location.geometry.location.lng
@@ -166,16 +167,6 @@ exports.getTask = function(req, res) {
   })
 }
 
-exports.getUserTasks = function(req, res) {
-  Task.find({ owner: req.user.email }, function(err, tasks){
-    if(err){
-      console.error(err);
-    }
-    console.log(tasks)
-    res.json(tasks);
-  })
-}
-
 exports.doTask = function(req, res) {
   Task.findOne({ _id: req.body.taskId}, function(err, task){
     if(task.assignedTo === ''){
@@ -204,7 +195,7 @@ exports.doTask = function(req, res) {
           foreignField: "email",
           as: "assignedUser"
         }}
-      ],
+      ], 
       function(err, tasks){
         if(err){
           console.error(err);
@@ -217,16 +208,12 @@ exports.doTask = function(req, res) {
 
 exports.addReview = function(req, res) {
   User.findOne({ email: req.body.servicePerson }, function(err, user) {
-    if(err){
-      console.log(err);
-    }
     if(user.reviews === null) user.reviews = [];
     user.reviews.push({
       reviewerEmail: req.user.email,
       reviewerName: req.user.firstName + ' ' + req.user.lastName,
       title: req.body.title,
-      review: req.body.review,
-      rating: req.body.rating
+      review: req.body.review
     });
     user.save(function(err, user) {
       res.send(user)
@@ -293,7 +280,7 @@ exports.saveFavorite = function(req, res, next) {
 
 exports.getVolunteer = function(req, res){
 
-  var query = {
+  let query = {
     volunteer: true,
     coordinates : {
       $near : {
@@ -322,37 +309,3 @@ exports.fetchFavorites = function(req, res, next) {
     }
   });
 };
-
-exports.updateUser = function(req, res) {
-  var email = req.user.email;
-  var newDescription = req.body.newDescription;
-  var firstName = req.body.firstName;
-  var lastName = req.body.lastName;
-  var address = req.body.address;
-  var location = req.body.location;
-  var file = req.body.file;
-
-  User.findOne({ email: email }, function(err, existingUser) {
-    if (err) return next(err);
-    if (existingUser) {
-      existingUser.selfDescription = newDescription
-      existingUser.firstName = firstName;
-      existingUser.lastName = lastName;
-      existingUser.address = address;
-      existingUser.location = location;
-      existingUser.image = file;
-      existingUser.save();
-      res.send();
-    }
-  });
-}
-
-exports.fetchLocalUser = function(req, res) {
-  var email = req.user.email;
-    User.findOne({ email: email }, function(err, user) {
-    if (err) res.send(err);
-    if (user) {
-      res.send(user);
-    }
-  });
-}

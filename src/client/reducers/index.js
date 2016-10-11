@@ -11,6 +11,7 @@ import Services            from './reducer_Services';
 import User                from './reducer_FetchUser';
 import Volunteers          from './reducer_Volunteers';
 import Favorites           from './reducer_Favorites';
+import LocalUser           from './reducer_LocalUser.js';
 
 const rootReducer = combineReducers({
   categories: Categories,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   services: Services,
   user: User,
   volunteers: Volunteers,
-  favorites: Favorites
+  favorites: Favorites,
+  localUser: LocalUser
 });
 
 export default rootReducer;
