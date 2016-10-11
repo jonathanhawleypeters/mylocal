@@ -13,3 +13,4 @@ export const FETCH_USER = 'FETCH_USER';
 export const GET_VOLUNTEERS = 'GET_VOLUNTEERS';
 export const FAVORITES = 'FAVORITES';
 export const GET_USER_TASKS = 'GET_USER_TASKS';
+export const LOCAL_USER = 'LOCAL_USER';

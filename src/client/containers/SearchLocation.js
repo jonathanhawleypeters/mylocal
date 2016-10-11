@@ -12,7 +12,7 @@ class SearchLocation extends React.Component {
   }
   componentWillMount() {
     let location
-    try{
+    try {
       location = JSON.parse(localStorage.getItem('location'))
     } catch (exception) {
       console.error(exception)

@@ -71,7 +71,6 @@ exports.changepassword = function(req, res, done) {
     });
 };
 
-// user profile for public viewing
 exports.fetchUser = function(req, res) {
   User.findOne({ email: req.body.email }, function(err, user) {
     if (err) res.send(err);
@@ -110,7 +109,7 @@ exports.fetchRestaurant = function(req, res) {
 };
 
 exports.addTask = function(req, res) {
-  let coordinates = [];
+  var coordinates = [];
 
   if(req.body.location.geometry){
     coordinates[0] = req.body.location.geometry.location.lng
@@ -205,7 +204,7 @@ exports.doTask = function(req, res) {
           foreignField: "email",
           as: "assignedUser"
         }}
-      ], 
+      ],
       function(err, tasks){
         if(err){
           console.error(err);
@@ -294,7 +293,7 @@ exports.saveFavorite = function(req, res, next) {
 
 exports.getVolunteer = function(req, res){
 
-  let query = {
+  var query = {
     volunteer: true,
     coordinates : {
       $near : {
@@ -323,3 +322,37 @@ exports.fetchFavorites = function(req, res, next) {
     }
   });
 };
+
+exports.updateUser = function(req, res) {
+  var email = req.user.email;
+  var newDescription = req.body.newDescription;
+  var firstName = req.body.firstName;
+  var lastName = req.body.lastName;
+  var address = req.body.address;
+  var location = req.body.location;
+  var file = req.body.file;
+
+  User.findOne({ email: email }, function(err, existingUser) {
+    if (err) return next(err);
+    if (existingUser) {
+      existingUser.selfDescription = newDescription
+      existingUser.firstName = firstName;
+      existingUser.lastName = lastName;
+      existingUser.address = address;
+      existingUser.location = location;
+      existingUser.image = file;
+      existingUser.save();
+      res.send();
+    }
+  });
+}
+
+exports.fetchLocalUser = function(req, res) {
+  var email = req.user.email;
+    User.findOne({ email: email }, function(err, user) {
+    if (err) res.send(err);
+    if (user) {
+      res.send(user);
+    }
+  });
+}

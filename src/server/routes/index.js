@@ -64,6 +64,11 @@ router.post('/api/saveFavorite', requireAuth, handler.saveFavorite);
 // fetch the favorites list
 router.get('/api/fetchFavorites', requireAuth, handler.fetchFavorites);
 
+router.post('/api/updateUser', requireAuth, handler.updateUser);
+
+// allow user to fetch his credentials for account settings page
+router.get('/api/fetchLocalUser', requireAuth, handler.fetchLocalUser);
+
 //catchall
 router.get('/*', function (req, res) {
   res.sendFile('index.html', { root: __dirname + '/../../public/' });

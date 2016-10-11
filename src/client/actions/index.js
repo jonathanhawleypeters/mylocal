@@ -11,6 +11,7 @@ import { ADD_SERVICE_TOP, GET_SERVICES }            from '../constants';
 import { FETCH_USER }                               from '../constants';
 import { GET_VOLUNTEERS }                           from '../constants';
 import { FAVORITES }                                from '../constants';
+import { LOCAL_USER }                         from '../constants';
 
 // action submits email, pw to the server
 // if success, update state of app to authenticated
@@ -293,17 +294,17 @@ export function getVolunteers(query, coordinates ) {
 export function saveFavorites(token, type, value, action) {
   return function(dispatch) {
     const header = { headers: { authorization: localStorage.getItem('token') } };
-      axios.post('/api/saveFavorite', { type: type, value: value, action: action }, header)
+    axios.post('/api/saveFavorite', { type: type, value: value, action: action }, header)
   }
 }
 
 export function updateFavorites(favorites, type, id) {
   const newFavorites = favorites.filter(function(favorite) {
-          return !(favorite.type === type && favorite.value.id === id);
-        });
+    return !(favorite.type === type && favorite.value.id === id);
+  });
   return {
-      type: FAVORITES,
-      payload: newFavorites
+    type: FAVORITES,
+    payload: newFavorites
   }
 }
 
@@ -315,5 +316,26 @@ export function fetchFavorites(token) {
           dispatch({ type: FAVORITES, payload: response.data });
       })
       .catch(error => console.log(error));
+  }
+}
+
+export function updateUser(token, { newDescription, firstName, lastName, address, locObj, file }) {
+  console.log('location', locObj);
+  return function(dispatch) {
+    const header = { headers: { authorization: token } };
+    axios.post('/api/updateUser', { newDescription, firstName, lastName, address, location: locObj, file }, header)
+      .then(function(response) {
+        browserHistory.push('/signout');
+      })
+  }
+}
+
+export function fetchLocalUser(token) {
+  return function(dispatch) {
+    const header = { headers: { authorization: token } };
+    axios.get('/api/fetchLocalUser', header)
+      .then(function(response) {
+        dispatch({ type: LOCAL_USER, payload: response.data })
+      })
   }
 }
