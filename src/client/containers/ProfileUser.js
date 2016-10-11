@@ -3,23 +3,10 @@
  import { fetchUser } from '../actions'
 
  class UserProfile extends React.Component {
-  componentDidMount() {
-    $('.long-review').hide();
-
-    $('.short-review').on('click', function() {
-      $(this).hide();
-      $(this).next().show()
-    })
-
-    $('.long-review').on('click', function() {
-      $(this).hide();
-      $(this).prev().show()
-    })
-  }
 
   componentWillMount() {
-    this.props.fetchUser('yasser.mahmud@gmail.com')
-  }  
+    this.props.fetchUser('eric@shor.com') //placeholder, we need to render this dynamically
+  }
 
   render() {
     return (
@@ -27,7 +14,7 @@
         <div className="profile-bg">
           <img src={ this.props.user.image } className="profile-img" alt="" />
           <div style={{ 'marginTop': '40px' }}></div>
-          <h2>Yasser Mahmud</h2>
+          <h2>{this.props.user.firstName + ' ' + this.props.user.lastName}</h2>
           <div style={{ 'marginTop': '40px' }}></div>
           <i className="material-icons star-rating star-on">star</i>
           <i className="material-icons star-rating star-on">star</i>
@@ -38,7 +25,7 @@
             <div className="row">
               <div className="col-md-2 offset-md-2">
                 <div><i className="material-icons profile-icon">location_on</i></div>
-                <p>yasser.mahmud@gmail.com</p>
+                <p>{ this.props.user.email }</p>
               </div>
               <div className="col-md-1 hidden-sm-down" style={{ 'textAlign': 'center' }}>
                 <div className="vr"></div>
@@ -61,8 +48,7 @@
         <div className="profile-panel">
           <h3>Description</h3>
           <hr />
-          <p>Full Stack Software Engineer. I am free in the evenings and weekends for freelance work. You can book my expertise in Javascript on a per hour basis. For tailor solutions, leave me a message and I will contact you.</p>
-          <p>I am also avaliable for voluteer work so if you have a good cause, I'm willing to hear</p>
+          <p>{this.props.user.selfDescription}</p>
         </div>
 
         <div style={{ 'marginTop': '40px' }}></div>
@@ -111,6 +97,31 @@
                 </div>
               </div>
             </div>
+            <div className="col-md-6">
+              <h3>Reviews</h3>
+              <hr />
+              { this.props.user.reviews ? ( this.props.user.reviews.map((review, key) => {
+                return (
+                  <div className="row" key={key} >
+                    <div className="col-lg-2 col-md-3 col-sm-3 col-xs-4">
+                      <img src="http://placehold.it/80x80" alt="" className="img-fluid" />
+                    </div>
+                    <div className="col-xl-6 col-lg-10 col-md-9 col-sm-9 col-xs-8">
+                      <h5>{review.title}</h5>
+                      <i className="material-icons star-rating star-sm star-on">star</i>
+                      <i className="material-icons star-rating star-sm star-on">star</i>
+                      <i className="material-icons star-rating star-sm star-on">star</i>
+                      <i className="material-icons star-rating star-sm star-on">star</i>
+                      <i className="material-icons star-rating star-sm star-on">star</i>
+                      <div >
+                        <p>{ review.review }</p> 
+                      </div>
+                    </div>
+                  </div>
+                )
+              }) ) : (<div></div>) }
+            </div>
+            {console.log("reviews", this.props.user)}
           </div>
         </div>   
       </div>

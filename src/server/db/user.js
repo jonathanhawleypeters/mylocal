@@ -15,6 +15,7 @@ var userSchema = new Schema({
   location: {},
   image: String,
   favorites: [],
+  selfDescription: String,
   reviews: []
 });
 
