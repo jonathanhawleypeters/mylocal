@@ -1,13 +1,21 @@
 import React, { Component }    from 'react';
-import { reduxForm }           from 'redux-form';
-import * as actions            from '../actions';
+import { connect }             from 'react-redux';
+import { changePassword }      from '../actions';
 import { browerHistory, Link } from 'react-router'
 
 
 class ChangePassword extends Component {
+  constructor() {
+    super();
+    this.state = {
+      oldPassword: '',
+      newPassword: '',
+      confNewPassword: ''
+    }
+  }
 
-  onFormSubmit( {confOldPassword, oldPassword, newPassword}) {
-
+  onFormsSubmit({ oldPassword, newPassword, confNewPassword }) {
+    console.log("i'm the onformsubmit")
     this.props.changePassword({ oldPassword, newPassword });
   }
 
@@ -21,30 +29,52 @@ class ChangePassword extends Component {
     }
   }
 
+  onOldPasswordChange(event) {
+    this.setState({
+      oldPassword: event.target.value
+    })
+  }
+
+  onNewPasswordChange(event) {
+    this.setState({
+      newPassword: event.target.value
+    })
+  }
+
+  onConfNewPasswordChange(event) {
+    this.setState({
+      confNewPassword: event.target.value
+    })
+  }
+
   render() {
-    const { handleSubmit, fields: { confOldPassword, oldPassword, newPassword } } = this.props;
+    if (this.props.changeInPassword) {
+      // var oldPassword = this.state.oldPassword
+      // var newPassword = this.state.newPassword
+      // var confNewPassword = this.state.confNewPassword
+      this.onFormsSubmit({ oldPassword: this.state.oldPassword, newPassword: this.state.newPassword, confNewPassword: this.state.confNewPassword})
+    }
     return (
         // note latest redux form gives warning message on spread operator, but still works
         // rolled back to redux 5.33, since 6.05 uses a different format.
-        <div className="main-banner" style={{ textAlign:"center" }}>
-          <div className="col-md-4 offset-md-4 col-sm-8 offset-sm-2" style={{ marginTop:'250px' }}>
-            <h3 style={{marginTop:15+"px", fontFamily:"Julius Sans One"}}>Change Password</h3>
-            <hr />
-            <form onSubmit={ handleSubmit(this.onFormSubmit.bind(this)) } >
-              <div className="form-group">
-                <input { ...oldPassword } type="password" style={{ 'border-radius': '5px', 'display': 'block', 'width': '100%', 'border': '1px solid #ddd', 'outline': 'none', 'padding': '7px', 'margin': '0 auto' }} placeholder="Current Password" required />
-              </div>
-              <div className="form-group">
-                <input { ...confOldPassword } type="password" style={{ 'border-radius': '5px', 'display': 'block', 'width': '100%', 'border': '1px solid #ddd', 'outline': 'none', 'padding': '7px', 'margin': '0 auto' }} placeholder="Confirm Password.." required />
-              </div>
-              <div className="form-group">
-                <input { ...newPassword } type="password" style={{ 'border-radius': '5px', 'display': 'block', 'width': '100%', 'border': '1px solid #ddd', 'outline': 'none', 'padding': '7px', 'margin': '0 auto' }} placeholder="New Password.." required />
-              </div>
-              {this.renderAlert()}
-              <button action="submit" className="btn btn-primary" style={{ marginTop:'5px', width:'100%', border:'none', outline:'none', padding:'16px', backgroundColor:'lightgreen', color:'white', fontSize:'20px' }}>Change Password</button>
-            </form>
-          </div>
+      <form>
+        <div className="password-box">
+          <input type="text" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="Current Password.." 
+            onChange={ this.onOldPasswordChange.bind(this) } 
+          />
         </div>
+        <div className="password-box">
+          <input type="text" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="New Password.." 
+            onChange={ this.onNewPasswordChange.bind(this) } 
+          />
+        </div>
+        <div className="password-box">
+          <input type="text" style={{ "borderRadius":"5px", "width":"250px", "border":"1px solid #ddd", "display":"block", "outline":"none", "padding":"7px", "marginTop":"10px" }} placeholder="Confirm New Password.." 
+            onChange={ this.onConfNewPasswordChange.bind(this) } 
+          />
+        </div>
+        {this.renderAlert()}
+      </form>
     );
   }
 }
@@ -53,7 +83,4 @@ function mapStateToProps(state) {
   return { errorMessage: state.auth.error };
 }
 
-export default reduxForm({
-  form: 'changepassword',
-  fields: ['oldPassword', 'confOldPassword', 'newPassword']
-}, mapStateToProps, actions)(ChangePassword);
+export default connect(mapStateToProps, { changePassword })(ChangePassword);

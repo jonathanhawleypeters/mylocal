@@ -62,7 +62,7 @@ export function signupUser(firstName, lastName, email, password, address, locObj
   };
 };
 
-export function changePassword({oldPassword, newPassword}){
+export function changePassword({ oldPassword, newPassword }){
   const header = {
       headers: {
         authorization: localStorage.getItem('token')
@@ -72,7 +72,7 @@ export function changePassword({oldPassword, newPassword}){
   return function(dispatch) {
     axios.post('/changepassword', { oldPassword, newPassword }, header)
     .then(response => {
-      dispatch({ type: AUTH_USER, payload: 'Your password has been changed!' });
+      dispatch({ type: AUTH_USER });
       browserHistory.push('/');
     })
     .catch(() => {
