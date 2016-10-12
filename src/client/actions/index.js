@@ -1,6 +1,5 @@
 import axios                                        from 'axios';
 import { browserHistory }                           from 'react-router';
-import helpers                                      from './action_helpers';
 import { AUTH_USER, AUTH_ERROR, UNAUTH_USER }       from '../constants';
 import { SEARCH_TERMS }                             from '../constants';
 import { EVENTBRITE_RESULTS }                       from '../constants';
