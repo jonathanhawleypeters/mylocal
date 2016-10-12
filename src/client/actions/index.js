@@ -111,6 +111,13 @@ export function searchEventbrite (query, location) {
   };
 };
 
+export function initEventbrite() {
+  return {
+    type: EVENTBRITE_RESULTS,
+    payload: []
+  };
+};
+
 export function searchYelp (location, query) {
   const YELP_URL = '/api/search/restaurants';
   return function(dispatch) {
@@ -125,6 +132,13 @@ export function searchYelp (location, query) {
     .catch((error) => {
       console.log(error);
     });
+  };
+};
+
+export function initYelp() {
+  return {
+    type: YELP_RESULTS,
+    payload: []
   };
 };
 

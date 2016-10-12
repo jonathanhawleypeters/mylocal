@@ -63,7 +63,7 @@ header {
 }
 
 .divider {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .col-fluid {
@@ -75,7 +75,7 @@ header {
   text-align: center;
   font-family: 'Julius Sans One', sans-serif;
   color: #555;
-  padding-top:5%;
+  padding-top:9%;
 }
 
 .btn-main-custom {
