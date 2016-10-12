@@ -9,10 +9,10 @@ import AddTask              from '../components/AddTask';
     if (!this.props.auth.authenticated) {
       return [
         <li className="nav-item" key={ 1 }>
-          <Link to="/signin" className="nav-item nav-link active">Sign in</Link>
+          <Link to="/signin" className="signin nav-item nav-link active">Sign in</Link>
         </li>,
         <li className="nav-item" key={ 2 }>
-          <Link to="/signup" className="nav-item nav-link active">Sign up</Link>
+          <Link to="/signup" className="signup nav-item nav-link active">Sign up</Link>
         </li>
       ];
     } else {
