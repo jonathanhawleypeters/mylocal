@@ -85,7 +85,7 @@ class Signup extends React.Component {
   render() {
     return (
       <div className="main-banner" style={{ 'textAlign': 'center' }}>
-        <div className="col-md-4 offset-md-4 col-sm-8 offset-sm-2" style={{ 'marginTop': '200px' }}>
+        <div className="col-md-4 offset-md-4 col-sm-8 offset-sm-2" style={{ 'marginTop': '130px' }}>
           <h3 style={{ 'fontFamily': 'Julius Sans One' }}>Sign Up</h3>
           <hr />
           <form onSubmit={ this.onFormSubmit.bind(this) } style={{ 'marginTop': '20px' }} encType="multipart/form-data">

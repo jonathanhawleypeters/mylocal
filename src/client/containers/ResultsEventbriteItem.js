@@ -37,7 +37,7 @@ class ResultsEventbriteItem extends Component {
             <div style={{ marginTop: '5px' }}></div>
             <hr />
             <h4>Description</h4>
-            <p className="desc">{ this.props.eventData.description.text }</p>
+            <p className="desc">{ this.props.eventData.description.text.slice(0, 500) + '...' }</p>
           </div>
           <div className="col-md-1 text-xs-right">
             <a className="cursor">

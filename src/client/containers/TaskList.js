@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
-import { getTasks } from '../actions';
+import { getTasks, doTask } from '../actions';
 
 class TaskList extends Component {
 
@@ -16,6 +16,13 @@ class TaskList extends Component {
     var longitude = localStorage.getItem('longitude')
     var latitude = localStorage.getItem('latitude')
     this.props.getTasks(this.props.location.query.q, [longitude, latitude]);
+  }
+
+  componentWillReceiveProps(nextprops) {
+    console.log(nextprops)
+    this.setState({
+      search: nextprops.searchTerms.query
+    });
   }
 
   searchChange(e) {
@@ -35,12 +42,14 @@ class TaskList extends Component {
   render(){
     const DOTASK = this.handleDoTask;
     return (
-      <div>
+      <div className="results">
         <div style={{ marginTop: "100px" }} ></div>
-        <h1 style={{ marginLeft: "75px" }}>Search Results for Tasks</h1>
+        <h1 className="searchresults-main" >Search Results for Tasks</h1>
         <form >
           <input type="text" placeholder="Filter" style={{float: "right", marginRight: "100px"}} onChange={this.searchChange} value={this.state.search} />
         </form>
+        <div className="clearfloat"></div>
+
         { this.props.tasks.filter((taskData) => {
           return taskData.title.toUpperCase().includes(this.state.search.toUpperCase()) || taskData.description.toUpperCase().includes(this.state.search.toUpperCase()) ||
             taskData.category.toUpperCase().includes(this.state.search.toUpperCase())
@@ -70,7 +79,7 @@ class TaskList extends Component {
                       <tr><td>Category: </td><td>{taskData.category}</td></tr>
                       <tr><td>Status: </td><td>{ taskData.completed ? String.fromCharCode(10004): String.fromCharCode(10008) }</td></tr>
                       <tr><td>Paid: </td><td>{ taskData.volunteer ? "No" : "Yes" }</td></tr>
-                      <tr><td>{taskData.assignedTo?"Assigned to: " + taskData.assignedUser[0].firstName:<button onClick={DOTASK} value={taskData._id}>Do this task</button>}</td></tr>
+                      <tr><td>{taskData.assignedTo?"Assigned to: " + taskData.assignedUser[0].firstName + ' ' + taskData.assignedUser[0].lastName:<button onClick={DOTASK} value={taskData._id}>Do this task</button>}</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -83,8 +92,8 @@ class TaskList extends Component {
   }
 }
 
-var mapStateToProps = function ({ tasks }) {
-  return { tasks }
+var mapStateToProps = function ({ tasks, searchTerms }) {
+  return { tasks, searchTerms }
 };
 
-export default connect (mapStateToProps, { getTasks })(TaskList);
+export default connect (mapStateToProps, { getTasks, doTask })(TaskList);

@@ -10,9 +10,6 @@ export default class CategoryDetail extends Component {
         <div className="col-lg-6 searchInfoMain">
           <h1>{ this.props.header }</h1>
           <div className="divider"></div>
-          <button className="btn btn-outline-info btn-lg btn-main-custom">
-            Search
-          </button>
         </div>
       </div>
     );
