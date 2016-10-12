@@ -49,6 +49,7 @@
           <div style={{ 'marginTop': '40px' }}></div>
 
           <div className="container-fluid profile-panel">
+
             <h3>Reviews</h3>
             <hr />
             { this.props.user.reviews ? ( this.props.user.reviews.map((review, key) => {
