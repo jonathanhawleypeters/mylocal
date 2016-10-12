@@ -6,37 +6,26 @@ import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from '../../src/client/constants';
 
 describe('UserAuthentication', () => {
 
-  // describe('Sign in user', () => {
-
-  //   // it('should have correct action type', () => {
-  //   //   // const action = signinUser();
-  //   //   const signin = signinUser({email:'amanthapar@gmail.com', password:'123' });
-  //   //   signin((action)=>{
-  //   //     console.log(action);
-  //   //     expect(action.type).to.equal(AUTH_USER);
-
-  //   //   })
-  //   // });
-  // });
-
-  // describe('Sign up user', () => {
-
-  //   it('', () => {
-
-
-  //   });
-  // });
-
-  // describe('Sign out User', () => {
-
-  //   it('', () => {
-
-
-  //   });
-  // });
-
+    let savedAction;
+    describe('Sign in user', () => {
+      before((done) => {
+        const signin = signinUser({email:'asdf@asdf.com', password:'asdf' });
+        signin((action)=>{
+          savedAction = action;
+        })
+        setTimeout(() => {
+          done()
+        }, 1000)        
+      })
+      it('should return an AUTH_ERROR action', () => {
+          expect(savedAction.type).to.equal(AUTH_ERROR);
+      });
+      it('should notify of incorrect login', () => {
+          expect(savedAction.payload).to.equal('Wrong login')
+      });
+    });
+    
   describe('Displays Errors', () => {
-
     it('should have action type auth error', () => {
       const error = authError("");
       expect(error.type).to.equal(AUTH_ERROR);
