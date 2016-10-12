@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class CategoryDetail extends Component {
+export default class CategoryDetail extends React.Component {
   render() {
     return (
       <div className="row" style={{ margin: 'none' }}>
