@@ -14,7 +14,8 @@ class GeneralSettings extends React.Component {
       description: '',
       address: '',
       locObj: {},
-      file: ''
+      file: '',
+      email: ''
     };
   }
 
@@ -29,7 +30,8 @@ class GeneralSettings extends React.Component {
       description: nextProps.localUser.selfDescription,
       address: nextProps.localUser.address,
       location: nextProps.localUser.location,
-      file: nextProps.localUser.image
+      file: nextProps.localUser.image,
+      email: nextProps.localUser.email
     })
   }
 
@@ -94,9 +96,9 @@ class GeneralSettings extends React.Component {
     return (
       <div>
         <nav className="nav nav-inline settings-bar">
-          <a className="nav-link" href="#">General</a>
+          <a className="nav-link" href="#">General Settings</a>
           <a className="nav-link" href="/account/tasks">My Tasks</a>
-          <a className="nav-link" href="#">Link</a>
+          <a className="nav-link" href={ `/user/${ this.state.email }` }>Public Probile</a>
           <a className="nav-link" href="#">Link</a>
           <a className="nav-link" href="#">Link</a>
         </nav>
