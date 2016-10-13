@@ -12,9 +12,7 @@ var serviceSchema = new Schema({
   title: String,
   location: {},
   volunteer: Boolean
-
 });
-
 
 // model class
 module.exports = mongoose.model('service', serviceSchema);

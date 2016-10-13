@@ -18,7 +18,5 @@ describe('Footer', () => {
     expect(application.find('.nav-item')).to.exist;
     expect(application.find('.nav-link')).to.exist;
   });
-
-
 });
 

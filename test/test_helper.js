@@ -1,13 +1,13 @@
-import jsdom from 'jsdom';
-import jquery from 'jquery';
-import TestUtils from 'react-addons-test-utils';
-import ReactDOM from 'react-dom';
+import jsdom            from 'jsdom';
+import jquery           from 'jquery';
+import TestUtils        from 'react-addons-test-utils';
+import ReactDOM         from 'react-dom';
 import chai, { expect } from 'chai';
-import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from '../src/client/reducers/';
-import chaiJquery from 'chai-jquery';
+import React            from 'react';
+import { Provider }     from 'react-redux';
+import { createStore }  from 'redux';
+import rootReducer      from '../src/client/reducers/';
+import chaiJquery       from 'chai-jquery';
 
 //Set up a test environment to run like a browswer in the command line
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');

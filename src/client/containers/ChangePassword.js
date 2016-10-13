@@ -3,7 +3,6 @@ import { connect }             from 'react-redux';
 import { changePassword }      from '../actions';
 import { browerHistory, Link } from 'react-router'
 
-
 class ChangePassword extends Component {
   constructor() {
     super();
@@ -50,9 +49,6 @@ class ChangePassword extends Component {
 
   render() {
     if (this.props.changeInPassword) {
-      // var oldPassword = this.state.oldPassword
-      // var newPassword = this.state.newPassword
-      // var confNewPassword = this.state.confNewPassword
       this.onFormsSubmit({ oldPassword: this.state.oldPassword, newPassword: this.state.newPassword, confNewPassword: this.state.confNewPassword})
     }
     return (

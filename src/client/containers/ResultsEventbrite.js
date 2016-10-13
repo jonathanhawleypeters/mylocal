@@ -1,6 +1,6 @@
-import React, { Component }  from 'react';
-import ResultsEventbriteItem from './ResultsEventbriteItem';
-import { connect }           from 'react-redux';
+import React, { Component }                  from 'react';
+import ResultsEventbriteItem                 from './ResultsEventbriteItem';
+import { connect }                           from 'react-redux';
 import { searchEventbrite, initEventbrite }  from '../actions';
 
 class ResultsEventbrite extends Component {

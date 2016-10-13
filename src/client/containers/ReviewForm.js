@@ -79,7 +79,6 @@ class ReviewForm extends Component {
         <button onClick={this.onCancel} style={{margin: "35px 20px"}}>Cancel</button>
         </div>
       </form>
-
     )
   }
 }

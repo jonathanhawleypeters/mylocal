@@ -1,8 +1,8 @@
-import React          from 'react';
-import ChangePassword from '../containers/ChangePassword';
-import { connect } from 'react-redux';
+import React                          from 'react';
+import ChangePassword                 from '../containers/ChangePassword';
+import { connect }                    from 'react-redux';
 import { updateUser, fetchLocalUser } from '../actions';
-import Autocomplete         from 'react-google-autocomplete';
+import Autocomplete                   from 'react-google-autocomplete';
 
 class GeneralSettings extends React.Component {
   constructor() {

@@ -3,19 +3,17 @@ import { reduxForm }           from 'redux-form';
 import * as actions            from '../actions';
 import { browerHistory, Link } from 'react-router'
 
-
 class Signin extends Component {
 
   onFormSubmit( {email, password}) {
-    // log in user
-    this.props.signinUser({email, password});
+    this.props.signinUser({ email, password });
   }
 
   renderAlert(){
     if (this.props.errorMessage){
       return (
         <div className="alert alert-danger">
-          <strong>Oops!</strong> {this.props.errorMessage}
+          <strong>Oops!</strong> { this.props.errorMessage }
         </div>
       );
     }
@@ -24,8 +22,6 @@ class Signin extends Component {
   render() {
     const { handleSubmit, fields: { email, password } } = this.props;
     return (
-        // note latest redux form gives warning message on spread operator, but still works
-        // rolled back to redux 5.33, since 6.05 uses a different format.
         <div className="main-banner signin" style={{ textAlign:"center" }}>
           <div className="col-md-4 offset-md-4 col-sm-8 offset-sm-2" style={{ marginTop:'250px' }}>
             <h3 style={{marginTop:15+"px", fontFamily:"Julius Sans One"}}>Sign In</h3>

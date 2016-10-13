@@ -1,8 +1,6 @@
-import { expect } from '../test_helper';
+import { expect }                                         from '../test_helper';
 import { signupUser, signinUser, authError, signoutUser } from '../../src/client/actions';
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from '../../src/client/constants';
-
-
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER }             from '../../src/client/constants';
 
 describe('UserAuthentication', () => {
 
@@ -30,11 +28,9 @@ describe('UserAuthentication', () => {
       const error = authError("");
       expect(error.type).to.equal(AUTH_ERROR);
     });
-
     it('should have payload error its given', () => {
       const error = authError('Please try again');
       expect(error.payload).to.equal('Please try again');
     });
   });
-
 });

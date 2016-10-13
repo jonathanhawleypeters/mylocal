@@ -5,7 +5,6 @@ import { connect }                    from 'react-redux';
 import { browserHistory }             from 'react-router';
 import { fetchFavorites }             from '../actions';
 
-
 class ResultsFavorites extends Component {
   constructor(){
     super();

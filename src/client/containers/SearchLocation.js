@@ -30,7 +30,6 @@ class SearchLocation extends React.Component {
   }
 
   render() {
-
     return (
       <div className="main-bg">
         <div className="main-bg-text">

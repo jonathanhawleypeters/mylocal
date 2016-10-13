@@ -3,7 +3,6 @@ const User = require('../db/user');
 const Task = require('../db/task');
 const Service = require('../db/service');
 
-
 // For authentication
 const jwt = require('jwt-simple');
 const secret = process.env.SECRET;
@@ -234,7 +233,6 @@ exports.addReview = function(req, res) {
   })
 }
 
-
 exports.addService = function(req, res) {
 
   const fullName = req.user.firstName + ' ' + req.user.lastName;
@@ -259,7 +257,6 @@ exports.addService = function(req, res) {
 };
 
 exports.getService = function(req, res) {
-
   Service.find({}, function(err, services){
     if(err) {
       console.error(err);

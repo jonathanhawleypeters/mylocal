@@ -34,9 +34,7 @@ class ReviewTasks extends Component {
         <a className="nav-link" href="#">Link</a>
         <a className="nav-link" href="#">Link</a>
       </nav>
-
         <div style={{ "marginTop":"132px" }}></div>
-
         <div className="results">
           <h2 className="searchresults-main">My Tasks</h2>
           <input placeholder="Filter" className="inputBox filter" />
