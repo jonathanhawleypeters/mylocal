@@ -28,12 +28,9 @@ module.exports = {
       if (type == 'data') {
         callback(JSON.stringify(this._postData));
       }
-
       if (type == 'end') {
         callback();
       }
-
     }.bind(this);
   }
-
 };

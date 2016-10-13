@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import ResultsYelpItem      from './ResultsYelpItem';
-import { connect }          from 'react-redux';
-import { searchYelp, initYelp }       from '../actions';
+import React, { Component }     from 'react';
+import ResultsYelpItem          from './ResultsYelpItem';
+import { connect }              from 'react-redux';
+import { searchYelp, initYelp } from '../actions';
 
 class ResultsYelp extends Component {
   constructor(props) {

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import ReviewForm from '../containers/ReviewForm';
 
-
-
 export default class ReviewTask extends Component {
 
   constructor(props) {

@@ -39,11 +39,6 @@ router.post('/api/addReview', requireAuth, handler.addReview);
 // call from client for yelp search
 router.get('/api/search/restaurants', handler.searchYelp);
 
-// example: protected route
-router.get('/secured', requireAuth, function(req, res) {
-  res.send({ success: true });
-});
-
 // get a single restaurant selected by user
 router.get('/fetchRestaurant/:id', handler.fetchRestaurant);
 
@@ -73,6 +68,5 @@ router.get('/api/fetchLocalUser', requireAuth, handler.fetchLocalUser);
 router.get('/*', function (req, res) {
   res.sendFile('index.html', { root: __dirname + '/../../public/' });
 });
-
 
 module.exports = router;

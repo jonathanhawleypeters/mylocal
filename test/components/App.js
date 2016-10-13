@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper';
-import App from '../../src/client/components/App';
+import App                         from '../../src/client/components/App';
 
 describe('App', () => {
   const application = renderComponent(App);
@@ -10,16 +10,12 @@ describe('App', () => {
     expect(application.find('.navbar')).to.exist;
   });
   describe('Sign In/ Sign Up Buttons', () => {
-
     it('should have a Sign In button', () => {
       expect(application.find('.signin')).to.exist;      
     })
-
     it('should have a Sign Up button', () => {
       expect(application.find('.signup')).to.exist;      
     })
-
   });
-
 });
 

@@ -5,7 +5,6 @@ import { signupUser } from '../actions';
 import { Link } from 'react-router'
 
 class Signup extends React.Component {
-
   constructor() {
     super();
 
@@ -130,6 +129,5 @@ class Signup extends React.Component {
     );
   }
 }
-
 
 export default connect(null, { signupUser })(Signup);

@@ -10,7 +10,7 @@ import { ADD_SERVICE_TOP, GET_SERVICES }            from '../constants';
 import { FETCH_USER }                               from '../constants';
 import { GET_VOLUNTEERS }                           from '../constants';
 import { FAVORITES }                                from '../constants';
-import { LOCAL_USER }                         from '../constants';
+import { LOCAL_USER }                               from '../constants';
 
 // action submits email, pw to the server
 // if success, update state of app to authenticated

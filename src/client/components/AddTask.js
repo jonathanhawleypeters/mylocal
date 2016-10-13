@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import TaskForm from '../containers/TaskForm';
 
-
-
 export default class AddTask extends Component {
 
   constructor(props) {

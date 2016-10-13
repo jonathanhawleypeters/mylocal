@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper';
-import Hero from '../../src/client/components/Hero';
+import Hero                        from '../../src/client/components/Hero';
 
 describe('Hero', () => {
   const hero = renderComponent(Hero);

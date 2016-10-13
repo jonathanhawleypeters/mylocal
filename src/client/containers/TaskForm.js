@@ -138,10 +138,8 @@ class TaskForm extends Component {
         <button onClick={this.onCancel} style={{margin: "35px 20px"}}>Cancel</button>
         </div>
       </form>
-
     )
   }
 }
-
 
 export default connect(null, { addTask })(TaskForm);

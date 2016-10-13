@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper';
-import Signin from '../../src/client/containers/Signin';
+import Signin                      from '../../src/client/containers/Signin';
 
 describe('Sign In Page', () => {
   const signin = renderComponent(Signin)
