@@ -51,7 +51,7 @@ npm run test:watch
 - The npm run test:watch command will run your test every time it detects a change in the filesystem. You may want to turn off webpack watch.
 
 ### File Structure
-There are two files that matter for development in root: /src and /test. 
+There are two files that matter for development in root: /src and /test. An exhaustive listing of the entire file structure can be found in [Dir_Struct.md](../dir_struct.md)
 
 #### /src
 - client
@@ -89,7 +89,7 @@ View the project roadmap [here](https://waffle.io/hrr18-trifecta/mylocal) on waf
 - Yelp
 
 ## Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines, or if you're feeling bold:
+See [CONTRIBUTING.md](../CONTRIBUTING.md) for contribution guidelines, or if you're feeling bold:
 
 1. Fork it!
 2. Create your feature branch: git checkout -b my-new-feature
