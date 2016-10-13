@@ -17,11 +17,11 @@ export default class UserTask extends Component {
               <div style={{ marginTop: '5px' }}></div>
               <hr />
             </div>
-            <div className="col-md-6">
+            <div className="col-md-5">
               <h4>Description</h4>
               <p >{ this.props.task.description }</p>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
               <h4>Details</h4>
               <table>
                 <tbody>
