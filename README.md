@@ -10,11 +10,19 @@
 
 ## Table of Contents
 
+1. [Team](#team)
+1. [Table of Contents](#table-of-contents)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
-1. [Team](#team)
+      1. [Task Descriptions](#task-descriptions)
+    1. [File Structure](#file-structure)
+      1. [/src](#src)
+      1. [/test](#test)
+    1. [Roadmap](#roadmap)
+    1. [Built With](#built-with)
+    1. [APIs](#apis)
 1. [Contributing](#contributing)
 
 ## Requirements
@@ -24,10 +32,10 @@
 - Jenkins 2.19
 
 ## Development
-The project has been set up to run tests in watch mode so we can live our TDD dreams. 
+This is a React/Redux app with a Node/Express server and a MongoDB database. The project has been set up to run tests with Mocha, Chai-JQuery, and React Test Utilities so we can live our TDD dreams. 
 
 ### Installing Dependencies
-To start, you need a .env file in the root directory with PORT, DBPATH and SECRET variables
+To start, you need a .env file in the root directory with PORT, DBPATH and SECRET variables.
 
 ### Tasks
 From within the root directory:
@@ -37,9 +45,31 @@ webpack --watch
 grunt local
 npm run test:watch
 ```
-The webpack --watch command will constantly rebuild only the changed parts of the project :)
-The grunt local command will run your dev server on localhost:3000
-The npm run test:watch command will run your test every time it detects a change in the filesystem. You may want to turn off webpack watch.
+#### Task Descriptions
+- The webpack --watch command will constantly rebuild only the changed parts of the project
+- The grunt local command will run your dev server on localhost:3000
+- The npm run test:watch command will run your test every time it detects a change in the filesystem. You may want to turn off webpack watch.
+
+### File Structure
+There are two files that matter for development in root: /src and /test. 
+
+#### /src
+- client
+- public
+- server
+- index.js
+
+/client has source files for the front end React/Redux app. Inside /client, the /actions, /constants, and /reducers folders contain the code that manages Redux state. /components has regular react components, while /containers has React/Redux components.
+
+Finally, at the top level of /client index.js is the entry point for the React App, and routes.js controls the front end routing for the single page application.
+
+#### /test
+- actions
+- components
+- server
+- test_helper.js
+
+The test_helper.js contains a bunch of fun tools that allow us to mock a DOM using jsdom while running tests in the command line, add testing feartures to react components with Reach Test Utilities, and simulate events on the DOM using Chai-JQuery. The folders in /test contain  tests for code in the /client directory, but the file structure is shallower for ease of navigation.
 
 ### Roadmap
 
