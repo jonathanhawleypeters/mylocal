@@ -372,3 +372,29 @@ td {
     padding-right: 20px !important;
   }
 }
+
+.addTask {
+  font-family: 'Julius Sans One'
+}
+
+.descBox {
+  padding:0 10px;
+  border: 2px solid #c0c0c0;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2rem;
+  vertical-align:top;
+  border-radius: 0;
+  outline: none;
+  color: #929292;
+}
+
+.addTaskForm {
+  width: 50%;
+  margin: 0 auto;
+}
+
+@media (max-width: 544px) {
+  .addTaskForm {
+    width: 90%;
+  }
+}

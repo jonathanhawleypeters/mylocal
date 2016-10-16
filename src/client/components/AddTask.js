@@ -42,7 +42,8 @@ export default class AddTask extends Component {
               color: "black"
             }
           }}>
-          <h2 style={{color: '#00a4d3'}}>Add Task</h2>
+          <h2 className="addTask" style={{color: '#00a4d3'}}>Add Task</h2>
+          <hr />
           {this.state.modalIsOpen ? <TaskForm close={this.closeModal} /> : <br />}
         </Modal>
       </span>
