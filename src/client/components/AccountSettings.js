@@ -152,7 +152,7 @@ class GeneralSettings extends React.Component {
             <textarea className="settings-width form-field" placeholder="Description.." rows="5" value={ this.state.description } onChange={this.onDescriptionChange.bind(this)}></textarea>
           </div>
           <div className="settings-panel">
-            <button onClick={ this.applyChanges.bind(this) }  className="btn btn-info">Apply Changes and Signout</button>
+            <button onClick={ this.applyChanges.bind(this) }  className="btn btn-primary">Apply Changes and Signout</button>
           </div>
         </div>
       </div>
