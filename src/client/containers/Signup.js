@@ -121,7 +121,7 @@ class Signup extends React.Component {
                 onChange={ this.onFileChange.bind(this) }
               />
             </div>
-            <button action="submit" className="btn btn-primary">Submit</button>
+            <button action="submit" className="btn btn-info">Submit</button>
             <div style={{ 'marginTop': '15px' }}><Link to="signin">Already have an account? <strong>Sign in</strong>...</Link></div>
           </form>
         </div>

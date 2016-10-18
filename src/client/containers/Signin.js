@@ -34,7 +34,7 @@ class Signin extends Component {
                 <input { ...password } type="password"  className="sign form-field" placeholder="Password.." required />
               </div>
               {this.renderAlert()}
-              <button action="submit" className="btn btn-primary">Sign in</button>
+              <button action="submit" className="btn btn-info">Sign in</button>
               <div style={{ marginTop: 15+'px'}}><Link to="/signup">Don't have an account? <strong>Signup</strong>...</Link></div>
             </form>
           </div>
